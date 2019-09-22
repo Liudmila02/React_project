@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component, Fragment} from 'react';
+import LoginForm from './components/users/LoginForm';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  
+  submit = values => {
+    window.alert (JSON.stringify (values));
+  };
+  
+  render () {
+    return (
+      <Fragment>
+        <h1>Login</h1>
+        <LoginForm onSubmit={this.submit} />
+      </Fragment>
+    );
+  }
 }
 
 export default App;
