@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
+import {validate} from '../../validation/index';
 
+import {myInput} from '../Field/index'
 class LoginForm extends Component {
   render () {
     const {handleSubmit} = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <Field
-          name="username"
-          component="input"
-          type="text"
-          placeholder="Username"
+          name="email"
+          component={myInput}
+          type="email"
+          placeholder="Email"
         />
         <Field
           name="password"
-          component="input"
+          component={myInput}
           type="password"
           placeholder="Password"
         />
@@ -26,6 +28,7 @@ class LoginForm extends Component {
 
 LoginForm = reduxForm ({
   form: 'login',
+  validate,
 }) (LoginForm);
 
 export default LoginForm;

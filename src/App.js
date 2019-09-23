@@ -1,20 +1,24 @@
-import React, {Component, Fragment} from 'react';
-import LoginForm from './components/users/LoginForm';
+import React, {Component, Fragment} from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import Home from './components/home'
+import LoginForm from './components/users/LoginForm'
+import signUpForm from './components/users/signUpForm'
+import CreateTask from './components/tasks/taskForm'
+
 
 class App extends Component {
-  
-  submit = values => {
-    window.alert (JSON.stringify (values));
-  };
-  
-  render () {
+ render () {
     return (
-      <Fragment>
-        <h1>Login</h1>
-        <LoginForm onSubmit={this.submit} />
-      </Fragment>
+      <Router>
+        <Route path="/" component={Home} />
+        <Route path="/login" component={LoginForm} />
+        <Route path="/signup" component={signUpForm} />
+        <Route path="/tasks/:id" component={CreateTask} />
+      </Router>
     );
   }
 }
 
 export default App;
+
+

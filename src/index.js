@@ -1,16 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './index.css';
-import App from '../src/App';
+import App from '../src/components/home';
 import * as serviceWorker from './serviceWorker';
-
-
-
-// ReactDOM.render(<App />, document.getElementById('root'));
-
-
-// serviceWorker.unregister();
-
 
 import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
@@ -27,3 +19,4 @@ ReactDOM.render(
     document.getElementById('root'));
 
 serviceWorker.unregister();
+
