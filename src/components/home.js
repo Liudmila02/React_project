@@ -43,7 +43,6 @@ class Task extends Component {
            <taskForm onSubmit={this.submit} />
          </Fragment>
   );
-      
 }
 }
 function SignOut() {
