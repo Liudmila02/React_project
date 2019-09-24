@@ -19,7 +19,7 @@ class SignUp extends Component {
 }
 class Login extends Component {
   submit = values => {
-         window.alert (JSON.stringify (values));
+    window.alert (JSON.stringify (values));
       };
       render () {
   return (

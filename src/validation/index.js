@@ -1,4 +1,3 @@
-
 export const validate = inputs => {
     const errors = {};
     if (!inputs.email) {
