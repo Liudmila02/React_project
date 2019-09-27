@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import LoginForm from './users/LoginForm'
 import signUpForm from './users/signUpForm'
 import taskForm from './tasks/taskForm'
+import taskList from './tasks/taskList'
 import { request } from '../utils/axios'
+import home from '../style/home.css'
 
 class SignUp extends Component {
   submit = values => {
@@ -61,6 +63,19 @@ class Task extends Component {
   );
 }
 }
+class ListTask extends Component {
+  submit = values => {
+    window.alert (JSON.stringify (values));
+  };
+    render () {
+      return (
+        <Fragment>
+          <h1>List task</h1>
+          <taskList onSubmit={this.submit} />
+        </Fragment>
+  );
+}
+}
 const routes = [
     {
       path: "/signUp",
@@ -97,6 +112,7 @@ function RouteConfigExample() {
     });
   };
   return (
+    <nav>
     <Router>
       <div>
         <ul>
@@ -112,6 +128,9 @@ function RouteConfigExample() {
           <li>
             <Link to="/api/tasks">New task</Link>
           </li>
+          <li>
+            <Link to="/tasks">List task</Link>
+          </li>
         </ul>
 
         {routes.map((route, i) => (
@@ -119,6 +138,7 @@ function RouteConfigExample() {
         ))}
       </div>
     </Router>
+    </nav>
   );
 }
 
