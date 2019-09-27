@@ -11,4 +11,15 @@ export const validate = inputs => {
     return errors;
   };
 
+  export const validateTask = inputs => {
+    const errors = {};
+    if (inputs.title = null) {
+      errors.title = "this field cann't be blank";}
+    if (inputs.description = null) {
+      errors.description = "this field cann't be blank";}
+    if (inputs.due_date = null) {
+        errors.due_date = "choose a due date";}
+    return errors;
+  };
+
 

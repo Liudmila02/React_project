@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-//import {Field, reduxForm} from 'redux-form';
-
-import axios from 'axios'
+import { reduxForm} from 'redux-form';
+import {request} from '../../utils/axios'
+import {validateTask} from '../../validation/index';
 
 export default class TaskForm extends Component {
   state = {
@@ -9,9 +9,8 @@ export default class TaskForm extends Component {
     description: '',
     priority: '',
     due_date: '',
-    completed: ''
+    completed: false,
   }
-
   handleTitleChange = event => {this.setState({ title: event.target.value })}
   handleDescriptionChange = event => {this.setState({ description: event.target.value })}
   handlePriorityChange = event => {this.setState({ priority: event.target.value })}
@@ -21,7 +20,7 @@ export default class TaskForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    axios.post('http://localhost:4000/api/tasks',
+    request.post('/api/tasks',
     { title: this.state.title, description: this.state.description, priority: this.state.priority, due_date: this.state.due_date, completed: this.state.completed },)
     .then(res => {
       console.log(res);
@@ -45,10 +44,11 @@ export default class TaskForm extends Component {
             </label>
             <label>
             Priority:
-            <select value={this.state.value} type="integer" name="priority" onChange={this.handlePriorityChange} />
+            <select value={this.state.value} onChange={this.handlePriorityChange}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
+            </select>
             </label>
             <label>
             Due_date:
@@ -64,47 +64,9 @@ export default class TaskForm extends Component {
     )
   }
 }
-// class taskForm extends Component {
-//   render () {
-//     const {handleSubmit} = this.props;
-//     return (
-//       <form onSubmit={handleSubmit}>
-//         <Field
-//           name="title"
-//           component="input"
-//           type="text"
-//           placeholder="Title"
-//         />
-//         <Field
-//           name="description"
-//           component="input"
-//           type="text"
-//           placeholder="description"
-//         />
-//         <Field
-//           name="priority"
-//           component="select"
-//           type="integer"
-//           placeholder="priority"
-//         />
-//         <Field
-//           name="due_date"
-//           component="input"
-//           type="date"
-//         />
-//         <Field
-//           name="completed"
-//           component="input"
-//           type="checkbox"
-//         />
-//         <button type="submit" label="submit">Submit</button>
-//       </form>
-//     );
-//   }
-// }
 
-// taskForm = reduxForm ({
-//   form: 'task',
-// }) (taskForm);
+TaskForm = reduxForm ({
+  form: 'task',
+  validateTask
+}) (TaskForm);
 
-// export default taskForm;

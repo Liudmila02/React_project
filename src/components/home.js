@@ -1,52 +1,65 @@
 import React, { Component, Fragment} from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
 import LoginForm from './users/LoginForm'
 import signUpForm from './users/signUpForm'
 import taskForm from './tasks/taskForm'
+import { request } from '../utils/axios'
 
 class SignUp extends Component {
   submit = values => {
          window.alert (JSON.stringify (values));
       };
       render () {
-  return (
+        return (
          <Fragment>
            <h1>SignUp</h1>
               <signUpForm onSubmit={this.submit} />
          </Fragment>
-  );
-  }      
+        );
+      }      
 }
 class Login extends Component {
   submit = values => {
     window.alert (JSON.stringify (values));
-      };
+  };
       render () {
-  return (
+        return (
          <Fragment>
            <h1>Login</h1>
               <LoginForm onSubmit={this.submit}
                initialValues={this.getInitialValues()} />
          </Fragment>
-  );
-      
+        );    
+      }
 }
+class SignOut extends Component {
+  submit = () => {
+    request.get('/signout')
+    .then((user, error) => {
+      this.setState({ redirect: true })
+    });
+  };
+    render () {
+      return (
+        <Fragment>
+          <h1 onClick={()=> this.submit() }>Sign Out</h1>
+        </Fragment>
+      );    
+    }
 }
 class Task extends Component {
   submit = values => {
-         window.alert (JSON.stringify (values));
-      };
-      render () {
-  return (
-         <Fragment>
-           <h1>Create task</h1>
-           <taskForm onSubmit={this.submit} />
-         </Fragment>
+    window.alert (JSON.stringify (values));
+  };
+    render () {
+      return (
+        <Fragment>
+          <h1>Create task</h1>
+          <taskForm onSubmit={this.submit} />
+        </Fragment>
   );
 }
-}
-function SignOut() {
-  return <h2>SignOut</h2>;
 }
 const routes = [
     {
@@ -62,7 +75,7 @@ const routes = [
       component: SignOut,
     },
     {
-      path: "/tasks/:id",
+      path: "/api/tasks",
       component: taskForm,
     },
   ]
@@ -76,8 +89,13 @@ function RouteWithSubRoutes(route) {
     />
   );
 }
-
 function RouteConfigExample() {
+ const submit = () => {
+    request.get('/signout')
+    .then((user, error) => {
+     window.location.href='/login'
+    });
+  };
   return (
     <Router>
       <div>
@@ -89,10 +107,10 @@ function RouteConfigExample() {
             <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/signOut">Sign out</Link>
+            <button onClick={()=> submit()}>Sign out </button>
           </li>
           <li>
-            <Link to="/tasks/id">New task</Link>
+            <Link to="/api/tasks">New task</Link>
           </li>
         </ul>
 

@@ -30,7 +30,6 @@ export default class signUpForm extends Component {
       console.log(err.response);
     });
 }
-
   render() {
     return (
       <div>
