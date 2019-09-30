@@ -7,7 +7,7 @@ export default class TaskForm extends Component {
   state = {
     title: '',
     description: '',
-    priority: '',
+    priority: '1',
     due_date: '',
     completed: false,
   }
@@ -52,7 +52,7 @@ export default class TaskForm extends Component {
             </label>
             <label>
             Due_date:
-            <input type="date" name="due_date" onChange={this.handleDueDateChange} />
+            <input  type="date" name="due_date" onChange={this.handleDueDateChange} />
             </label>
             <label>
             Completed:

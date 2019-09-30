@@ -4,37 +4,39 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import LoginForm from './users/LoginForm'
 import signUpForm from './users/signUpForm'
 import taskForm from './tasks/taskForm'
-import taskList from './tasks/taskList'
+import TaskList from './tasks/taskList'
+import TaskEdit from './tasks/taskEdit'
 import { request } from '../utils/axios'
 import home from '../style/home.css'
 
-class SignUp extends Component {
-  submit = values => {
-         window.alert (JSON.stringify (values));
-      };
-      render () {
-        return (
-         <Fragment>
-           <h1>SignUp</h1>
-              <signUpForm onSubmit={this.submit} />
-         </Fragment>
-        );
-      }      
-}
-class Login extends Component {
-  submit = values => {
-    window.alert (JSON.stringify (values));
-  };
-      render () {
-        return (
-         <Fragment>
-           <h1>Login</h1>
-              <LoginForm onSubmit={this.submit}
-               initialValues={this.getInitialValues()} />
-         </Fragment>
-        );    
-      }
-}
+
+// class SignUp extends Component {
+//   submit = values => {
+//          window.alert (JSON.stringify (values));
+//       };
+//       render () {
+//         return (
+//          <Fragment>
+//            <h1>SignUp</h1>
+//               <signUpForm onSubmit={this.submit} />
+//          </Fragment>
+//         );
+//       }      
+// }
+// class Login extends Component {
+//   submit = values => {
+//     window.alert (JSON.stringify (values));
+//   };
+//       render () {
+//         return (
+//          <Fragment>
+//            <h1>Login</h1>
+//               <LoginForm onSubmit={this.submit}
+//                initialValues={this.getInitialValues()} />
+//          </Fragment>
+//         );    
+//       }
+// }
 class SignOut extends Component {
   submit = () => {
     request.get('/signout')
@@ -50,32 +52,32 @@ class SignOut extends Component {
       );    
     }
 }
-class Task extends Component {
-  submit = values => {
-    window.alert (JSON.stringify (values));
-  };
-    render () {
-      return (
-        <Fragment>
-          <h1>Create task</h1>
-          <taskForm onSubmit={this.submit} />
-        </Fragment>
-  );
-}
-}
-class ListTask extends Component {
-  submit = values => {
-    window.alert (JSON.stringify (values));
-  };
-    render () {
-      return (
-        <Fragment>
-          <h1>List task</h1>
-          <taskList onSubmit={this.submit} />
-        </Fragment>
-  );
-}
-}
+// class Task extends Component {
+//   submit = values => {
+//     window.alert (JSON.stringify (values));
+//   };
+//     render () {
+//       return (
+//         <Fragment>
+//           <h1>Create task</h1>
+//           <taskForm onSubmit={this.submit} />
+//         </Fragment>
+//   );
+// }
+// }
+// class  extends Component {
+//   submit = values => {
+//     window.alert (JSON.stringify (values));
+//   };
+//     render () {
+//       return (
+//         <Fragment>
+//           <h1>List task</h1>
+//           <TaskList onSubmit={this.submit} />
+//         </Fragment>
+//   );
+// }
+// }
 const routes = [
     {
       path: "/signUp",
@@ -92,6 +94,14 @@ const routes = [
     {
       path: "/api/tasks",
       component: taskForm,
+    },
+    {
+      path: "/tasks",
+      component: TaskList,
+    },
+    {
+      path: "/api/tasks/:taskId/edit",
+      component: TaskEdit,
     },
   ]
 function RouteWithSubRoutes(route) {

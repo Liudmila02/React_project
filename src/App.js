@@ -6,7 +6,8 @@ import signUpForm from './components/users/signUpForm'
 import TaskForm from './components/tasks/taskForm'
 import SignOutForm from './components/users/signOut'
 import TaskList from './components/tasks/taskList'
-
+import TaskEdit from './components/tasks/taskList'
+import TaskDelete from './components/tasks/taskList'
 
 class App extends Component {
  render () {
@@ -18,11 +19,12 @@ class App extends Component {
         <Route path="/api/tasks" component={TaskForm} />
         <Route path="/signout" component={SignOutForm} />
         <Route path="/tasks" component={TaskList} />
+        <Route path="/api/tasks/:taskId/edit" component={TaskEdit} />
+        <Route path="/api/tasks/:taskId" component={TaskDelete} />
       </Router>
     );
   }
 }
-
 export default App;
 
 
