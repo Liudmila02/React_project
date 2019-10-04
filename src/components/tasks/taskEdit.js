@@ -1,60 +1,81 @@
-// import React, { Component } from "react";
-// import {request} from '../../utils/axios';
+import React, { Component } from "react";
+import {request} from '../../utils/axios';
 
-
-// class TaskEdit extends Component {
-//   state = {
-//     title: '',
-//     description: '',
-//     priority: '',
-//     due_date: '',
-//     completed: false,
-//   }
-//   handleTitleChange = event => {this.setState({ title: event.target.value })}
-//   handleDescriptionChange = event => {this.setState({ description: event.target.value })}
-//   handlePriorityChange = event => {this.setState({ priority: event.target.value })}
-//   handleDueDateChange = event => {this.setState({ due_date: event.target.value })}
-//   handleCompletedChange = event => {this.setState({ completed: event.target.value })}
+// // class TaskEdit extends React.Component {
+// //     constructor(props) {
+// //         super(props);
+// //         this.state = {
+// //             data: [
+// //                 { "id": "1", "title": "Task 1", "description": "Buy Milk", "priority": "1", "due_date": "12/02/2019", "completed": "false" },
+// //                 { "id": "2", "title": "Task 2","description": "Buy new computer book", "priority": "3", "due_date": "11/02/2019", "completed": "false" },
+// //             ],
+// //             isEditing: false,
+// //             editItem: {}
+// //         }
+// //     }
   
-//   handleSubmit = event => {
-//     event.preventDefault();
+// //     editItem(taskId) {
+// //         const remainder = this.state.data.filter((task) => {
+// //             if (task.id === taskId) return task;
+// //         });
+// //         this.setState({ isEditing: true, editItem: remainder[0] });
+    
+// //     request.put(`/api/tasks/${key}`)
+// //       .then(res => {
+// //         console.log(res);
+// //         console.log(res.data);
+// //       })
+// //       .catch(function (err) {
+// //         console.log(err.response);
+// //       })
+// //     }
+// //     render() {
+// //     return (
+// //       <TaskForm isEditing={this.state.isEditing} handleTitleChange={this.handleTitleChange.bind()} editItem={this.state.editItem}  />
+// //     );
+// //   }
+// // }
 
-//     request.post('/api/tasks',
-//     { title: this.state.title, description: this.state.description, priority: this.state.priority, due_date: this.state.due_date, completed: this.state.completed },)
-//     .then(res => {
-//       console.log(res);
-//       console.log(res.data);
-//     })
-//     .catch(function (err) {
-//       console.log(err.response);
-//     });
-// }
-//   render() {
-//     return (
-//         <div>
-//           <form>       
-//             <li>
-//               Title:
-//               <input defaultValue={this.state.title} type="text" name="title" onChange={this.handleTitleChange} /> 
-//               Description: 
-//               <input defaultValue={this.state.description} type="text" name="description" onChange={this.handleDescriptionChange} />  
-//               Priority:
-//               <select defaultValue={this.state.priority} type="select" name="priority" onChange={this.handlepriorityChange}>
-//                 <option value="1">1</option>
-//                 <option value="2">2</option>
-//                 <option value="3">3</option>
-//               </select>  
-//               Due_date:
-//               <input defaultValue={this.state.due_date} type="date" name="due_date" onChange={this.handleDueDateChange} />  
-//               Completed:
-//               <input defaultValue={this.state.completed} type="checkbox" name="completed" onChange={this.handleCompletedChange} />  
-//               <button onClick={() => this.handleSave(this.state)}>Save</button>
-//             </li>
-//           </form>
-//       </div>
-//     );
-//   }
-// }
 
-// export default TaskEdit;
+class TaskEdit extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { title: '', description: '', priority: '', due_date: '', completed: '' }
+    this.handleChange = this.handleChange.bind(this)
+  }
+  handleChange(event) {
+    this.setState({ value: event.target.value })
+  }
 
+  handleSubmit(event) {
+    alert(this.state.title)
+    event.preventDefault()
+     
+    // request.put(`/api/task/${key}`)
+    //     .then(res => {
+    //     console.log(res);
+    //     console.log(res.state);
+    //     })
+    //     .catch(function (err) {
+    //     console.log(err.response);
+    //     })
+
+  }
+
+  render() {
+      console.log('from taskedit1')
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={this.state.title}
+          onChange={this.handleTitleChange}
+        />
+        <input type="submit" value="Submit" />
+
+      </form>
+    )
+  }
+}
+
+export default TaskEdit;

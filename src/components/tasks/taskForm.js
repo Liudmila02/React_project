@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { reduxForm} from 'redux-form';
 import {request} from '../../utils/axios'
 import {validateTask} from '../../validation/index';
+import nav from "../../utils/nav"
 
 export default class TaskForm extends Component {
   state = {
@@ -17,14 +18,16 @@ export default class TaskForm extends Component {
   handleDueDateChange = event => {this.setState({ due_date: event.target.value })}
   handleCompletedChange = event => {this.setState({ completed: event.target.value })}
   
-  handleSubmit = event => {
-    event.preventDefault();
+  handleSubmit = event => { event.preventDefault();
 
     request.post('/api/tasks',
     { title: this.state.title, description: this.state.description, priority: this.state.priority, due_date: this.state.due_date, completed: this.state.completed },)
     .then(res => {
       console.log(res);
       console.log(res.data);
+      console.log('history')
+      
+      nav('/tasks')
     })
     .catch(function (err) {
       console.log(err.response);
