@@ -3,6 +3,7 @@ import {reduxForm} from 'redux-form';
 import {validate} from '../../validation/index';
 
 import {request} from '../../utils/axios';
+import nav from '../../utils/nav'
 
 export default class LoginForm extends Component {
   state = {
@@ -20,6 +21,9 @@ export default class LoginForm extends Component {
     .then(res => {
       console.log(res);
       console.log(res);
+      console.log('history')
+      
+      nav('/tasks')
     })
     .catch(function (err) {
       console.log(err.response);

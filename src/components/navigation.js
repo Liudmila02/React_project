@@ -1,5 +1,8 @@
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component, Fragment} from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import '../style/nav.css'
 
 import LoginForm from './users/LoginForm'
 import signUpForm from './users/signUpForm'
@@ -65,10 +68,11 @@ function RouteConfigExample() {
   };
 
   return (
-    <nav>
+    <nav className="justify-content-center">
     {/* <Router> */}
       <div>
         <ul>
+          <h4>Task management system</h4>
           <li>
             <Link to="/signUp">Sign up</Link>
           </li>

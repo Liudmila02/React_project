@@ -1,81 +1,113 @@
-import React, { Component } from "react";
+import React, { Link } from "react";
 import {request} from '../../utils/axios';
 
-// // class TaskEdit extends React.Component {
-// //     constructor(props) {
-// //         super(props);
-// //         this.state = {
-// //             data: [
-// //                 { "id": "1", "title": "Task 1", "description": "Buy Milk", "priority": "1", "due_date": "12/02/2019", "completed": "false" },
-// //                 { "id": "2", "title": "Task 2","description": "Buy new computer book", "priority": "3", "due_date": "11/02/2019", "completed": "false" },
-// //             ],
-// //             isEditing: false,
-// //             editItem: {}
-// //         }
-// //     }
-  
-// //     editItem(taskId) {
-// //         const remainder = this.state.data.filter((task) => {
-// //             if (task.id === taskId) return task;
-// //         });
-// //         this.setState({ isEditing: true, editItem: remainder[0] });
-    
-// //     request.put(`/api/tasks/${key}`)
-// //       .then(res => {
-// //         console.log(res);
-// //         console.log(res.data);
-// //       })
-// //       .catch(function (err) {
-// //         console.log(err.response);
-// //       })
-// //     }
-// //     render() {
-// //     return (
-// //       <TaskForm isEditing={this.state.isEditing} handleTitleChange={this.handleTitleChange.bind()} editItem={this.state.editItem}  />
-// //     );
-// //   }
-// // }
-
-
-class TaskEdit extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { title: '', description: '', priority: '', due_date: '', completed: '' }
-    this.handleChange = this.handleChange.bind(this)
-  }
-  handleChange(event) {
-    this.setState({ value: event.target.value })
-  }
-
-  handleSubmit(event) {
-    alert(this.state.title)
-    event.preventDefault()
+export default class TaskEdit extends React.Component {
      
-    // request.put(`/api/task/${key}`)
-    //     .then(res => {
-    //     console.log(res);
-    //     console.log(res.state);
-    //     })
-    //     .catch(function (err) {
-    //     console.log(err.response);
-    //     })
+  componentWillMount(){
+    this.setState({
+        updatable : false,
+        title : this.props.title,
+        description : this.props.description
+    });
+this.onTitleChange = this.onTitleChange.bind(this)
 
+    console.log(this.props)
+    request.put(`/api/tasks/${this.props.match.params.taskId}`)
+      .then(res => {
+        console.log(res);
+        console.log(res.data); 
+        this.setState({
+          Item: res.data.task
+
+        
+        })
+      })
+      .catch(function (err) {
+        console.log(err.response);
+      });
   }
-
   render() {
-      console.log('from taskedit1')
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          value={this.state.title}
-          onChange={this.handleTitleChange}
-        />
-        <input type="submit" value="Submit" />
-
-      </form>
-    )
+      <div>
+        {this.state.Item && 
+        <div> 
+          <input className="form-control" type="text" value={this.state.title} id={'taskTitle' + this.props.id} onTitleChange={this.onTitleChange}/>
+          
+          
+          <div> Title: {this.state.Item.title}</div>
+          <div> Description: {this.state.Item.description}</div>
+          <div> Priority: {this.state.Item.priority}</div>
+          <div> Due date: {this.state.Item.due_date.split('T')[0]}</div>
+          <div> Completed: {this.state.Item.completed==false ? 'uncompleted' : 'completed'}</div>
+        </div>
+        }
+        <Link to = "/tasks">Back</Link> 
+      </div>
+    );
   }
 }
 
-export default TaskEdit;
+
+// class TaskEdit extends Component {
+//   constructor(props) {
+//     super(props)
+//     this.state = { title: '', description: '', priority: '', due_date: '', completed: '' }
+//     this.handleChange = this.handleChange.bind(this)
+//   }
+//   handleChange(event) {
+//     this.setState({ value: event.target.value })
+//   }
+
+//   handleSubmit(event) {
+//     alert(this.state.title)
+//     event.preventDefault()
+//   }
+  
+//     editItem = key => {
+//     request.put(`/api/tasks/${key}`)
+//         .then(res => {
+//         console.log(res);
+//         console.log(res.state);
+//         })
+//         .catch(function (err) {
+//         console.log(err.response);
+//         })
+
+  
+//       }
+//   render() {
+//       console.log('from taskedit1')
+//     return (
+//       <form onSubmit={this.handleSubmit}>
+//         <label>
+//             Title:
+//             <input type="text" name="title" onChange={this.handleTitleChange} />
+//             </label>
+//             <label>
+//             Description:
+//             <input type="text" name="description" onChange={this.handleDescriptionChange} />
+//             </label>
+//             <label>
+//             Priority:
+//             <select value={this.state.value} onChange={this.handlePriorityChange}>
+//             <option value="1">1</option>
+//             <option value="2">2</option>
+//             <option value="3">3</option>
+//             </select>
+//             </label>
+//             <label>
+//             Due_date:
+//             <input  type="date" name="due_date" onChange={this.handleDueDateChange} />
+//             </label>
+//             <label>
+//             Completed:
+//             <input type="checkbox" name="completed" onChange={this.handleCompletedChange} />
+//           </label>
+//           <button type="submit">Create task</button>
+//       </form>
+//     )
+//   }
+
+// }
+
+// export default TaskEdit;

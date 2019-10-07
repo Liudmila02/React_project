@@ -18,7 +18,10 @@ export default class TaskForm extends Component {
   handleDueDateChange = event => {this.setState({ due_date: event.target.value })}
   handleCompletedChange = event => {this.setState({ completed: event.target.value })}
   
-  handleSubmit = event => { event.preventDefault();
+  handleSubmit = event => { alert('You have created a new task with the title: ' + this.state.title + ', ' + 'description: ' + this.state.description + ', ' + 'priority: ' +
+   this.state.priority + ', ' + 'due date: ' + this.state.due_date + ', ' + 'completed: ' + this.state.completed);
+   event.preventDefault();
+    
 
     request.post('/api/tasks',
     { title: this.state.title, description: this.state.description, priority: this.state.priority, due_date: this.state.due_date, completed: this.state.completed },)
@@ -66,6 +69,7 @@ export default class TaskForm extends Component {
       </div>
     )
   }
+  
 }
 
 TaskForm = reduxForm ({

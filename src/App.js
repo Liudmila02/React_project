@@ -18,7 +18,7 @@ class App extends Component {
         <Home />
         <Route path="/login" component={LoginForm} />
         <Route path="/signup" component={signUpForm} />
-        <Route path="/api/tasks" component={TaskForm} />
+        <Route exact path="/api/tasks" component={TaskForm} />
         <Route path="/tasks" component={TaskList} />
         <Route path="/api/tasks/:taskId/edit" component={TaskEdit} />
         <Route path="/api/tasks/:taskId/show" component={TaskShow} />
