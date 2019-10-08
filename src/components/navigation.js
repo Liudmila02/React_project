@@ -88,6 +88,7 @@ function RouteConfigExample() {
           <li>
             <Link to="/tasks">List task</Link>
           </li>
+          <li><button>Sort</button></li>
 
         </ul>
 
