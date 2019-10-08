@@ -12,6 +12,7 @@ export default class TaskForm extends Component {
     due_date: '',
     completed: false,
   }
+  
   handleTitleChange = event => {this.setState({ title: event.target.value })}
   handleDescriptionChange = event => {this.setState({ description: event.target.value })}
   handlePriorityChange = event => {this.setState({ priority: event.target.value })}
@@ -36,21 +37,23 @@ export default class TaskForm extends Component {
       console.log(err.response);
     });
 }
+
   render() {
     return (
       <div>
+        <h1>New form</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
             Title:
-            <input type="text" name="title" onChange={this.handleTitleChange} />
+            <input type="text" name="title"  onChange={this.handleTitleChange} />
             </label>
             <label>
             Description:
-            <input type="text" name="description" onChange={this.handleDescriptionChange} />
+            <input type="text" name="description"  onChange={this.handleDescriptionChange} />
             </label>
             <label>
             Priority:
-            <select value={this.state.value} onChange={this.handlePriorityChange}>
+            <select value={this.state.value}  onChange={this.handlePriorityChange}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -58,7 +61,7 @@ export default class TaskForm extends Component {
             </label>
             <label>
             Due_date:
-            <input  type="date" name="due_date" onChange={this.handleDueDateChange} />
+            <input  type="date" name="due_date"  onChange={this.handleDueDateChange} />
             </label>
             <label>
             Completed:
@@ -69,7 +72,6 @@ export default class TaskForm extends Component {
       </div>
     )
   }
-  
 }
 
 TaskForm = reduxForm ({

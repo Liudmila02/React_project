@@ -23,6 +23,7 @@ export default class TaskShow extends React.Component {
   render() {
     return (
       <div>
+        <h1>About task</h1>
         {this.state.Item && 
         <div> 
           <div> Title: {this.state.Item.title}</div>

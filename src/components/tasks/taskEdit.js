@@ -1,12 +1,11 @@
 import React, { Link } from "react";
 import {request} from '../../utils/axios';
 
-
 export default class TaskEdit extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      id:'',
+      id: '',
       title:'',
       description:'',
       priority:'',
@@ -15,20 +14,21 @@ export default class TaskEdit extends React.Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this);
   }
-  componentWillMount(){
-    this.getTaskEdit();
+  componentDidMount(){
+    console.log(this.props)
+    this.getTaskDetails();
   }
-  getTaskEdit(){
-    let taskId = this.props.match.params.id;
+  getTaskDetails(){
+    let taskId = this.props.match.params.taskId;
     request.get(`/api/tasks/${taskId}`)
       .then(response => {
         this.setState({
-          id: response.data.id,
-          title: response.data.title,
-          description: response.data.id,
-          priority: response.data.priority,
-          due_date: response.data.due_date,
-          completed: response.data.completed
+          id: response.data.task.id,
+          title: response.data.task.title,
+          description: response.data.task.description,
+          priority: response.data.task.priority,
+          due_date: response.data.task.due_date.split('T')[0],
+          completed: response.data.task.completed
         }, () => {
           console.log(this.state);
         })
@@ -36,16 +36,16 @@ export default class TaskEdit extends React.Component {
       .catch(err =>  console.log(err));
       }
 
-    editTask(newTask){
-      request({
-        method:'put',
-        url:`/api/tasks/${this.props.match.params.taskId}`,
-        data: newTask
-      }).then(response => {
-        console.log(response.data);
-        this.props.nav('/tasks')
-     }).catch(err => console.log(err));
-    }
+  editTask(newTask){
+    request({
+      method:'put',
+      url:`/api/tasks/${this.props.match.params.taskId}`,
+      data: newTask
+    }).then(response => {
+      console.log(response.data);
+      window.location.href='/tasks'
+    }).catch(err => console.log(err));
+  }
 
   onSubmit(e){
     const newTask = {
@@ -103,9 +103,7 @@ export default class TaskEdit extends React.Component {
           </label>
           <input type="submit" value="Save" className="btn" />
         </form>
-      </div>
-      
+      </div>  
     )
   }
-  
 }

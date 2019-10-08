@@ -41,7 +41,7 @@ const routes = [
       component: SignOut,
     },
     {
-      path: "/api/tasks",
+      path: "/task",
       component: taskForm,
     },
     {
@@ -83,7 +83,7 @@ function RouteConfigExample() {
             <button onClick={()=> submit()}>Sign out </button>
           </li>
           <li>
-            <Link to="/api/tasks">New task</Link>
+            <Link to="/task">New task</Link>
           </li>
           <li>
             <Link to="/tasks">List task</Link>

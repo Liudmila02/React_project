@@ -43,9 +43,10 @@ class TaskList extends Component {
         <ul>
           {this.state.listItems.map(listitem => (
             <li key={listitem.id}>
+              <input type="checkbox" />
               {listitem.title} 
-              <Link to={`/api/tasks/${listitem.id}/show`} >Show</Link>
-              <Link to={`/api/tasks/${listitem.id}/edit`}>Edit</Link>
+              <Link to={`/tasks/${listitem.id}/show`} >Show</Link>
+              <Link to={`/tasks/${listitem.id}/edit`}>Edit</Link>
               <button onClick={() => this.deleteItem(listitem.id)}>Delete</button>
               <button onClick={() => this.completedItem(listitem.id)}>Completed</button>
             </li>

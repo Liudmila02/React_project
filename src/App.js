@@ -18,10 +18,10 @@ class App extends Component {
         <Home />
         <Route path="/login" component={LoginForm} />
         <Route path="/signup" component={signUpForm} />
-        <Route exact path="/api/tasks" component={TaskForm} />
-        <Route path="/tasks" component={TaskList} />
-        <Route exact path="/api/tasks/:taskId/edit" component={TaskEdit} />
-        <Route path="/api/tasks/:taskId/show" component={TaskShow} />
+        <Route path="/task" component={TaskForm} />
+        <Route exact path="/tasks" component={TaskList} />
+        <Route path="/tasks/:taskId/edit" component={TaskEdit} />
+        <Route path="/tasks/:taskId/show" component={TaskShow} />
         </div>
       </Router>
     );
