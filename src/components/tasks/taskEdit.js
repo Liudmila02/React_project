@@ -13,9 +13,9 @@ export default class TaskEdit extends React.Component {
       completed:''
     }
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputCheckboxChange = this.handleInputCheckboxChange.bind(this);
   }
   componentDidMount(){
-    console.log(this.props)
     this.getTaskDetails();
   }
   getTaskDetails(){
@@ -53,7 +53,7 @@ export default class TaskEdit extends React.Component {
       description: this.refs.description.value,
       priority: this.refs.priority.value,
       due_date: this.refs.due_date.value,
-      completed: this.refs.completed.value,
+      completed: this.refs.completed.checked,
     }
     this.editTask(newTask);
     e.preventDefault();
@@ -62,12 +62,19 @@ export default class TaskEdit extends React.Component {
     const target = e.target;
     const value = target.value;
     const name = target.name;
-
     this.setState({
       [name]: value
     });
   }
+  handleInputCheckboxChange(e){
+    const checked = e.target.checked;
+    
+    this.setState({
+      [e.target.name]: checked
+    });
+  }
   render() {
+    console.log(this.props)
     return (
       <div>
         <h1>Edit form</h1>
@@ -98,8 +105,8 @@ export default class TaskEdit extends React.Component {
             </label>
             <label>
             Completed:
-            <input type="checkbox" name="completed" ref="completed" value={this.state.completed} 
-            onChange={this.handleInputChange} />
+            <input type="checkbox" name="completed" ref="completed" checked={this.state.completed} 
+            onChange={this.handleInputCheckboxChange} />
           </label>
           <input type="submit" value="Save" className="btn" />
         </form>

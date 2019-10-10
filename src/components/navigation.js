@@ -4,10 +4,10 @@ import React, { Component, Fragment} from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import '../style/nav.css'
 
-import LoginForm from './users/LoginForm'
-import signUpForm from './users/signUpForm'
-import taskForm from './tasks/taskForm'
-import TaskList from './tasks/taskList'
+// import LoginForm from './users/LoginForm'
+// import signUpForm from './users/signUpForm'
+// import taskForm from './tasks/taskForm'
+// import TaskList from './tasks/taskList'
 
 import { request } from '../utils/axios'
 
@@ -27,28 +27,28 @@ class SignOut extends Component {
     }
 }
 
-const routes = [
-    {
-      path: "/signUp",
-      component: signUpForm
-    },
-    {
-      path: "/login",
-      component: LoginForm,
-    },
-    {
-      path: "/signOut",
-      component: SignOut,
-    },
-    {
-      path: "/task",
-      component: taskForm,
-    },
-    {
-      path: "/tasks",
-      component: TaskList,
-    },
-  ]
+// const routes = [
+//     {
+//       path: "/signUp",
+//       component: signUpForm
+//     },
+//     {
+//       path: "/login",
+//       component: LoginForm,
+//     },
+//     {
+//       path: "/signOut",
+//       component: SignOut,
+//     },
+//     {
+//       path: "/task",
+//       component: taskForm,
+//     },
+//     {
+//       path: "/tasks",
+//       component: TaskList,
+//     },
+//   ]
 function RouteWithSubRoutes(route) {
   return (
     <Route

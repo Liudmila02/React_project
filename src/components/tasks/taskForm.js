@@ -17,12 +17,10 @@ export default class TaskForm extends Component {
   handleDescriptionChange = event => {this.setState({ description: event.target.value })}
   handlePriorityChange = event => {this.setState({ priority: event.target.value })}
   handleDueDateChange = event => {this.setState({ due_date: event.target.value })}
-  handleCompletedChange = event => {this.setState({ completed: event.target.value })}
+  handleCompletedChange = event => {this.setState({ completed: event.target.cheked })}
   
-  handleSubmit = event => { alert('You have created a new task with the title: ' + this.state.title + ', ' + 'description: ' + this.state.description + ', ' + 'priority: ' +
-   this.state.priority + ', ' + 'due date: ' + this.state.due_date + ', ' + 'completed: ' + this.state.completed);
+  handleSubmit = event => {
    event.preventDefault();
-    
 
     request.post('/api/tasks',
     { title: this.state.title, description: this.state.description, priority: this.state.priority, due_date: this.state.due_date, completed: this.state.completed },)
@@ -37,7 +35,6 @@ export default class TaskForm extends Component {
       console.log(err.response);
     });
 }
-
   render() {
     return (
       <div>
