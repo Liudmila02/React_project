@@ -38,7 +38,7 @@ export default class TaskForm extends Component {
   render() {
     return (
       <div>
-        <h1>New form</h1>
+        <h1>Create new task</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
             Title:

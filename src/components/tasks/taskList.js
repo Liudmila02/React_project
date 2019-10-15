@@ -11,6 +11,7 @@ class TaskList extends Component {
     super(props)
     this.state = {
       listItems: [],
+      checkbox: false,
     };
   }
  

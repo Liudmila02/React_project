@@ -46,7 +46,7 @@ function RouteConfigExample() {
         <h4 className="logo">Task management system</h4>
         <button class="btn btn-light" onClick={()=> submit()}>Sign out </button>
       </ul> 
-      {/* <MainPage /> */}
+      <MainPage />
     </nav>
    
      

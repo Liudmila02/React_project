@@ -13,10 +13,10 @@ return (
         You will be able to specify the due date and select the priority of the task.</h3>
       <ul>
         <li>
-          <Link class="btn btn-primary btn-rounded" to="/signUp">Sign up</Link>
+          <Link type="button" class="btn btn-default" to="/signUp">Sign up</Link>
         </li>
         <li>
-          <Link class="btn btn-outline-primary btn-rounded waves-effect" to="/login">Login</Link>
+          <Link type="button" class="btn btn-default" to="/login">Login</Link>
         </li>
       </ul>
     </div>
