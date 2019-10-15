@@ -1,40 +1,71 @@
-body{
-    padding: 20px 30px;
-    /* background-image: url(./image/img8.jpg); */
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhai|Cabin|Dancing+Script|Lato:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Mansalva&display=swap');
+.navbar-toggler-icon{
+  position: initial;
+}
+.nav-menu {
+  font-size: 1em;
+  list-style-type: none;
+}
+
+
+
+.menu-task {
+  color: black;
+  font-size: 1.2em;
+}
+
+.task-list {
+  display: block;
+  color: black;
+  margin-top: 2.5em;
+}
+
+body {
+    /* padding: 20px 30px; */
+    /* background-image: url(./image/imggg.jpg); */
     background-position: top;
     background-size: 100%;
 }
-h4{
-    padding: 0,5em;
+
+.logo {
+  font-family: 'Mansalva', cursive;
+  color: white;
+  padding: 0,5em;
 }
-.completed{
+
+h3 {
+  text-align: center;
+}
+
+.completed {
   color: rgb(95, 90, 90);
   text-decoration: line-through;
-
  }
-/* nav{
-    font-size: 1em;
-    text-align: center;
 
-} */
-/* ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    
-  }
-  li {
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+  /* li {
     
     float: left;
-  } */
-  /* li a {
-    /* display: block; */
-    /* color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none; */
-  /* } */
+  } */ 
+li {
+  list-style-type: none;
+  display: inline;
+  /* color: black; */
+  position: static;
+  padding: 14px 16px;
+  text-decoration: none; 
+  font-family: 'Cabin', sans-serif;
+  font-size: 1.2em;
+  list-style-type: none;
+  margin-right: 2em;
+}
    
   /* Change the link color to #111 (black) on hover */
   /* li a:hover {

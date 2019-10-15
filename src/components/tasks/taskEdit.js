@@ -1,5 +1,6 @@
 import React, { Link } from "react";
 import {request} from '../../utils/axios';
+import nav from '../../utils/nav'
 
 export default class TaskEdit extends React.Component {
   constructor(props){
@@ -15,9 +16,11 @@ export default class TaskEdit extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputCheckboxChange = this.handleInputCheckboxChange.bind(this);
   }
+
   componentDidMount(){
     this.getTaskDetails();
   }
+
   getTaskDetails(){
     let taskId = this.props.match.params.taskId;
     request.get(`/api/tasks/${taskId}`)
@@ -43,11 +46,12 @@ export default class TaskEdit extends React.Component {
       data: newTask
     }).then(response => {
       console.log(response.data);
-      window.location.href='/tasks'
+      nav('/tasks')
     }).catch(err => console.log(err));
   }
 
   onSubmit(e){
+    e.preventDefault()
     const newTask = {
       title: this.refs.title.value,
       description: this.refs.description.value,
@@ -56,8 +60,8 @@ export default class TaskEdit extends React.Component {
       completed: this.refs.completed.checked,
     }
     this.editTask(newTask);
-    e.preventDefault();
   }
+
   handleInputChange(e){
     const target = e.target;
     const value = target.value;
@@ -66,6 +70,7 @@ export default class TaskEdit extends React.Component {
       [name]: value
     });
   }
+
   handleInputCheckboxChange(e){
     const checked = e.target.checked;
     

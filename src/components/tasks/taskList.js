@@ -1,30 +1,19 @@
-import React, { Component, Fragment, useCallback} from "react";
-import {request} from '../../utils/axios';
-import {Link} from 'react-router-dom'
-import '../../style/nav.css'
+import React, { Component, Fragment } from "react";
+import { request } from '../../utils/axios';
+import { Link } from 'react-router-dom';
+
+import TaskListItem from './taskListItem';
+
+import '../../style/listTask.css';
 
 class TaskList extends Component {
   constructor(props){
     super(props)
     this.state = {
       listItems: [],
-      // uncompleted: [],
-      // completed:[]
     };
   }
-
-// const filteredCompleted = this.state.listItems.filter(item =>{
-  //   return item.id == true
-  // })
-  // this.setState({
-  //   listItems: filteredCompleted,
-  // })
-  // const filteredUncompleted = this.state.listItems.filter(item =>{
-  //   return item.id == false
-  // })
-  // this.setState({
-  //   listItems: filteredUncompleted,
-  // })
+ 
   componentDidMount() {
     request.get('/api/tasks')
       .then(res => {
@@ -39,82 +28,36 @@ class TaskList extends Component {
       });
 }
 
-// completedItem(){
-//   request.put(`/api/tasks/${this.props.match.params.taskId}`, {completed: this.state.completed == true} )
-//     .then(res => {
-//       this.setState({
-        
-//       })
-//       console.log("button clicked")
-//     }).catch(function (err) {
-//       console.log(err.res);
-//     })
-// }
-
-  // completedItem(){
-
-  //   request.put(`/api/tasks/${this.props.match.params.taskId}`, {completed: this.state.completed})
-  //       .then(res => {
-  //         //console.log(res);
-  //         // console.log(res.data);
-          
-  //         // window.location.href='/tasks'
-  //       }).catch(function (err) {
-  //         console.log(err.res);
-  //       })
-    
-  // }
-  // completedItem() {
-  //   // const completed = false
-  //   request.put(`/api/tasks/${this.props.match.params.taskId}`, { completed: true})
-  //     .then(res => {
-  //       console.log('!!!!!!!!!!!!!')
-  //       // console.log(res);
-  //       console.log(res.data);
-
-      
-  //       // this.setState({
-  //       // update: completed == true
-  //       // })
-  //     })
-  //     .catch(function (err) {
-  //       console.log(err.response);
-  //     })
-  // }
   completedItem = key => {
-    
-    const filteredItems = this.state.listItems.filter(item => {
-      return item.id !== key
-    })
-    this.setState({
-      key
-    })
     request.put(`/api/tasks/${key}`, { completed: true})
       .then(res => {
+        const task = res.data
+        const filteredTasks = this.state.listItems.filter(item => {
+          return item.id !== key
+        })
+        this.setState({
+          listItems: filteredTasks,
+          
+        })
+        console.log(this.setState)
         console.log(res);
         console.log(res.data);
-        this.props.completedItems(res.data.task)
-        // this.setState({
-        //   key
-        // })
-        // window.location.reload(true);
-        // window.location.href='/tasks'
+        window.location.href='/tasks'
       })
       .catch(function (err) {
         console.log(err.response);
       })
   }
   
-
   deleteItem = key => {
-    const filteredItems = this.state.listItems.filter(item => {
-      return item.id !== key
-    })
-    this.setState({
-      listItems: filteredItems,
-    })
     request.delete(`/api/tasks/${key}`)
       .then(res => {
+        const filteredItems = this.state.listItems.filter(item => {
+          return item.id !== key
+        })
+        this.setState({
+          listItems: filteredItems,
+        })
         console.log(res);
         console.log(res.data);
       })
@@ -122,37 +65,52 @@ class TaskList extends Component {
         console.log(err.response);
       })
   }
- 
- 
+
+  deleteChecked = items => {
+    request.delete(`/api/tasks/${items}`)
+      .then(res => {
+        const filteredItems = this.state.listItems.filter(item => {
+          return item.id !== items
+        })
+        this.setState({
+          listItems: filteredItems,
+        })
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch(function (err) {
+        console.log(err.response);
+      })
+  }
+  
   render() {
     console.log('list')
     return (
       <Fragment>
-        <div>
+        <div className="menu-task">
         <ul>
+         <li>
+            <Link class="btn btn-primary" to="/task">New task</Link>
+          </li>
+          <li>
+            <Link class="btn btn-primary" to="/tasks">List task</Link>
+          </li>
+          <li><button class="btn btn-primary" onClick={() => this.delete()}>Sort</button></li>
+          <li><button class="btn btn-primary" onClick={() => this.deleteChecked()}>Delete checked</button></li>
+        </ul>
+        </div>
+        <div className="task-list">
+          <div>
           {this.state.listItems.filter(item => item.completed == false).map(listitem => (
-            <li  key={listitem.id}> 
-              <input type="checkbox" />
-              {listitem.title}
-            <Link to={`/tasks/${listitem.id}/show`} >Show</Link>
-            <Link to={`/tasks/${listitem.id}/edit`}>Edit</Link>
-            <button onClick={() => this.deleteItem(listitem.id)}>Delete</button> 
-            <button  bsStyle="primary" onClick={(e) => this.completedItem(listitem.id)}>Completed</button>
-            </li>
+            <TaskListItem task={listitem} handleDelete={this.deleteItem} handleComplete={this.completedItem}/>
             ))}
-        </ul>
+          </div>
         <hr/>
-        <ul>
+        <div className="completed">
           {this.state.listItems.filter(item => item.completed == true).map(listitem => (
-            <li className="completed" key={listitem.id}>
-              <input type="checkbox" />
-              {listitem.title} 
-            <Link to={`/tasks/${listitem.id}/show`} >Show</Link>
-            <Link to={`/tasks/${listitem.id}/edit`}>Edit</Link>
-            <button onClick={() => this.deleteItem(listitem.id)}>Delete</button>
-            </li>
+            <TaskListItem task={listitem} handleDelete={this.deleteItem} />
             ))}
-        </ul>
+        </div>
         </div>
       </Fragment>
     );

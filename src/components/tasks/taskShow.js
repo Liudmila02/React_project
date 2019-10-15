@@ -33,7 +33,7 @@ export default class TaskShow extends React.Component {
           <div> Completed: {this.state.Item.completed==false ? 'uncompleted' : 'completed'}</div>
         </div>
         }
-        <Link to = "/tasks">Back</Link> 
+        <Link type="button" class="btn btn-info btn-rounded" to = "/tasks">Back</Link> 
       </div>
     );
   }

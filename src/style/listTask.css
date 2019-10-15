@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Mansalva|Source+Sans+Pro&display=swap');
+
+.menu-task {
+  font-size: 1.2em;
+  list-style-type: none;
+ 
+}
+.task-list {
+  font-size: 1em;
+  font-family: 'Source Sans Pro', sans-serif;
+  display: inline;
+ 
+}
+
+li a {
+    margin: 20px 15px;
+    
+ }
+
+.completed {
+    color: rgb(95, 90, 90);
+    text-decoration: line-through;
+    
+    /* padding: 20px 60px;
+    margin: 20px 20px; */
+}
+
+.uncompleted {
+    display: inline;
+    /* padding: 20px 60px;
+    margin: 20px 20px; */
+    
+}

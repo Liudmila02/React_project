@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Mansalva&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Mansalva|Source+Sans+Pro&display=swap');
+
+.main-page {
+    color: #0a2129;
+}
+
+h2 {
+  font-size: 3em;
+  font-family: 'Mansalva', cursive;
+  text-align: center;
+  padding: 90px 50px 10px 50px;
+
+}
+
+h3 {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 10px 300px;
+}
+
+
+
+/* li a {
+   padding: 40px 90px;
+} */

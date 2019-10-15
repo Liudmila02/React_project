@@ -1,15 +1,10 @@
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component, Fragment} from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import '../style/nav.css'
-
-// import LoginForm from './users/LoginForm'
-// import signUpForm from './users/signUpForm'
-// import taskForm from './tasks/taskForm'
-// import TaskList from './tasks/taskList'
-
+import MainPage  from './mainPage'
 import { request } from '../utils/axios'
+
+import '../style/nav.css'
 
 class SignOut extends Component {
   submit = () => {
@@ -27,28 +22,6 @@ class SignOut extends Component {
     }
 }
 
-// const routes = [
-//     {
-//       path: "/signUp",
-//       component: signUpForm
-//     },
-//     {
-//       path: "/login",
-//       component: LoginForm,
-//     },
-//     {
-//       path: "/signOut",
-//       component: SignOut,
-//     },
-//     {
-//       path: "/task",
-//       component: taskForm,
-//     },
-//     {
-//       path: "/tasks",
-//       component: TaskList,
-//     },
-//   ]
 function RouteWithSubRoutes(route) {
   return (
     <Route
@@ -68,92 +41,30 @@ function RouteConfigExample() {
   };
 
   return (
-    <nav className="justify-content-center">
-    {/* <Router> */}
-      <div>
-        <ul>
-          <h4>Task management system</h4>
-          <li>
-            <Link to="/signUp">Sign up</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <button onClick={()=> submit()}>Sign out </button>
-          </li>
-          <li>
-            <Link to="/task">New task</Link>
-          </li>
-          <li>
-            <Link to="/tasks">List task</Link>
-          </li>
-          <li><button>Sort</button></li>
-
-        </ul>
-
-        {/* {routes.map((route, i) => (
-          <RouteWithSubRoutes key={i} {...route} />
-        ))} */}
-      </div>
-    {/* </Router> */}
+    <nav>
+      <ul class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <h4 className="logo">Task management system</h4>
+        <button class="btn btn-light" onClick={()=> submit()}>Sign out </button>
+      </ul> 
+      {/* <MainPage /> */}
     </nav>
-  );
-}
+   
+     
+    
+       //<div className="main-page">
+        // <h2>Welcome to task management system!</h2>
+         //<h3>Do you want to create a task management system for yourself? Then sign up or sign in to your account and create your own tasks.
+         // You will be able to specify the due date and select the priority of the task.</h3>
 
+          //<ul><li>
+             //<Link to="/signUp">Sign up</Link>
+          // </li>
+           //<li>
+             //<Link to="/login">Login</Link>
+           //</li></ul>
+       // </div> 
+ 
+  )
+}
 export default RouteConfigExample;
 
-// class SignUp extends Component {
-//   submit = values => {
-//          window.alert (JSON.stringify (values));
-//       };
-//       render () {
-//         return (
-//          <Fragment>
-//            <h1>SignUp</h1>
-//               <signUpForm onSubmit={this.submit} />
-//          </Fragment>
-//         );
-//       }      
-// }
-// class Login extends Component {
-//   submit = values => {
-//     window.alert (JSON.stringify (values));
-//   };
-//       render () {
-//         return (
-//          <Fragment>
-//            <h1>Login</h1>
-//               <LoginForm onSubmit={this.submit}
-//                initialValues={this.getInitialValues()} />
-//          </Fragment>
-//         );    
-//       }
-// }
-
-// class Task extends Component {
-//   submit = values => {
-//     window.alert (JSON.stringify (values));
-//   };
-//     render () {
-//       return (
-//         <Fragment>
-//           <h1>Create task</h1>
-//           <taskForm onSubmit={this.submit} />
-//         </Fragment>
-//   );
-// }
-// }
-// class  extends Component {
-//   submit = values => {
-//     window.alert (JSON.stringify (values));
-//   };
-//     render () {
-//       return (
-//         <Fragment>
-//           <h1>List task</h1>
-//           <TaskList onSubmit={this.submit} />
-//         </Fragment>
-//   );
-// }
-// }

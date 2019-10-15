@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import { reduxForm} from 'redux-form';
 import {request} from '../../utils/axios'
-import {validateTask} from '../../validation/index';
 import nav from "../../utils/nav"
+
+import '../../style/taskForm.css'
 
 export default class TaskForm extends Component {
   state = {
@@ -42,18 +42,18 @@ export default class TaskForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Title:
-            <input type="text" name="title"  onChange={this.handleTitleChange} />
+            <input type="title" name="title"  onChange={this.handleTitleChange} />
             </label>
             <label>
             Description:
-            <input type="text" name="description"  onChange={this.handleDescriptionChange} />
+            <input type="description" name="description"  onChange={this.handleDescriptionChange} />
             </label>
             <label>
             Priority:
             <select value={this.state.value}  onChange={this.handlePriorityChange}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+            <option value="1">Later</option>
+            <option value="2">Next</option>
+            <option value="3">Now</option>
             </select>
             </label>
             <label>
@@ -71,8 +71,4 @@ export default class TaskForm extends Component {
   }
 }
 
-TaskForm = reduxForm ({
-  form: 'task',
-  validateTask
-}) (TaskForm);
 

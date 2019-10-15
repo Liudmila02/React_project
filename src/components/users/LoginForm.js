@@ -31,15 +31,15 @@ export default class LoginForm extends Component {
 }
 render() {
   return (
-    <div>
+    <div class="md-form">
       <form onSubmit={this.handleSubmit}>
         <label>
           Email:
-          <input type="text" email="email" onChange={this.handleEmailChange} />
+          <input type="email" name="email" onChange={this.handleEmailChange} />
         </label>
         <label>
           Password:
-          <input type="text" password="password" onChange={this.handlePasswordChange} />
+          <input type="password" name="password" onChange={this.handlePasswordChange} />
         </label>
         <button type="submit">Add</button>
       </form>
