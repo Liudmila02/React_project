@@ -7,6 +7,7 @@ import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
 import {reducer as formReducer} from 'redux-form';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const reducers = {form: formReducer};
 const reducer = combineReducers(reducers);

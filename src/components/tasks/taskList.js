@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { request } from '../../utils/axios';
 import { Link } from 'react-router-dom';
-
 import TaskListItem from './taskListItem';
 
 import '../../style/listTask.css';
@@ -9,12 +8,72 @@ import '../../style/listTask.css';
 class TaskList extends Component {
   constructor(props){
     super(props)
+    this.toggleListReverse = this.toggleListReverse.bind(this)
+    this.toggleSortDate = this.toggleSortDate.bind(this)
+    this.toggleSortPriority = this.toggleSortPriority.bind(this)
+    this.toggleTitlePriority = this.toggleSortTitle.bind(this)
     this.state = {
       listItems: [],
-      checkbox: false,
+      isOldestFirst: true
     };
   }
- 
+
+  sortByDate(){
+    const {listItems} = this.state
+    let new_listItems = listItems
+    if (this.state.isOldestFirst){
+      new_listItems.sort((a, b) => a.due_date < b.due_date)
+    } else {
+      new_listItems.sort((a, b) => a.due_date < b.due_date)
+    }
+    this.setState({
+      listItems: new_listItems.sort((a, b) => a.due_date > b.due_date)
+    })
+  }
+  toggleSortDate (event) {
+    this.sortByDate()
+   }
+
+  sortByPriority(){
+    const {listItems} = this.state
+    let new_listItems = listItems
+    if (this.state.isOldestFirst){
+      new_listItems.sort((a, b) => a.priority < b.priority)
+    } else {
+      new_listItems.sort((a, b) => a.priority < b.priority)
+    }
+    this.setState({
+      listItems: new_listItems.sort((a, b) => a.priority > b.priority)
+    })
+  }
+  toggleSortPriority (event) {
+   this.sortByPriority()
+  }
+
+  sortByTitle(){
+    const {listItems} = this.state
+    let new_listItems = listItems
+    if (this.state.isOldestFirst){
+      new_listItems.sort((a, b) => a.title < b.title)
+    } else {
+      new_listItems.sort((a, b) => a.title < b.title)
+    }
+    this.setState({
+      listItems: new_listItems.sort((a, b) => a.title > b.title)
+    })
+  }
+  toggleSortTitle (event) {
+   this.sortByTitle()
+  }
+
+  toggleListReverse (event) {
+    const {listItems} = this.state
+    let new_listItems = listItems.reverse()
+    this.setState({
+      listItems: new_listItems
+    })
+  }
+
   componentDidMount() {
     request.get('/api/tasks')
       .then(res => {
@@ -27,7 +86,7 @@ class TaskList extends Component {
       .catch(function (err) {
         console.log(err.response);
       });
-}
+  }
 
   completedItem = key => {
     request.put(`/api/tasks/${key}`, { completed: true})
@@ -68,7 +127,7 @@ class TaskList extends Component {
   }
 
   deleteChecked = items => {
-    request.delete(`/api/tasks/${items}`)
+    request.delete(`/api/tasks/${items}`, {checked: true})
       .then(res => {
         const filteredItems = this.state.listItems.filter(item => {
           return item.id !== items
@@ -91,12 +150,15 @@ class TaskList extends Component {
         <div className="menu-task">
         <ul>
          <li>
-            <Link class="btn btn-primary" to="/task">New task</Link>
+            <Link type="button" class="btn btn-primary" to="/task">New task</Link>
           </li>
           <li>
             <Link class="btn btn-primary" to="/tasks">List task</Link>
           </li>
-          <li><button class="btn btn-primary" onClick={() => this.delete()}>Sort</button></li>
+          <li><button class="btn btn-primary" onClick={() => this.toggleSortDate()}>Sort by due date</button></li>
+          <li><button class="btn btn-primary" onClick={() => this.toggleSortPriority()}>Sort by priority</button></li>
+          <li><button class="btn btn-primary" onClick={() => this.toggleSortTitle()}>Sort by title</button></li>
+          <li><button class="btn btn-primary" onClick={() => this.toggleListReverse()}>Reverse</button></li>
           <li><button class="btn btn-primary" onClick={() => this.deleteChecked()}>Delete checked</button></li>
         </ul>
         </div>

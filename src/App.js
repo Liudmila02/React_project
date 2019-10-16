@@ -8,6 +8,8 @@ import TaskForm from './components/tasks/taskForm'
 import TaskList from './components/tasks/taskList'
 import TaskEdit from './components/tasks/taskEdit'
 import TaskShow from './components/tasks/taskShow'
+import MainPage from './components/mainPage'
+
 import history from './utils/history'
 
 class App extends Component {
@@ -16,6 +18,7 @@ class App extends Component {
       <Router history={history}>
         <div>
         <Home />
+        <Route exact path="/" component={MainPage} />
         <Route path="/login" component={LoginForm} />
         <Route path="/signup" component={signUpForm} />
         <Route path="/task" component={TaskForm} />
