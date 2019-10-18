@@ -31,17 +31,18 @@ export default class LoginForm extends Component {
 }
 render() {
   return (
-    <div class="md-form">
-      <form onSubmit={this.handleSubmit}>
-        <label>
+    <div className="gradient-box">
+      <p>Login</p>
+      <form className="form-group" onSubmit={this.handleSubmit}>
+        <label className="title-input">
           Email:
-          <input type="email" name="email" onChange={this.handleEmailChange} />
+          <input className="form-control inline-input" type="email" name="email" onChange={this.handleEmailChange} />
         </label>
-        <label>
+        <label className="title-input">
           Password:
-          <input type="password" name="password" onChange={this.handlePasswordChange} />
+          <input className="form-control inline-input" type="password" name="password" onChange={this.handlePasswordChange} />
         </label>
-        <button type="submit">Add</button>
+        <button class="kvasov-btn-gradient btn-color-3" type="submit">Login</button>
       </form>
     </div>
   )

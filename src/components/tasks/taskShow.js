@@ -2,6 +2,8 @@ import React from 'react';
 import {request} from '../../utils/axios';
 import {Link} from 'react-router-dom'
 
+import '../../style/showTask.css'
+
 export default class TaskShow extends React.Component {
   state = {
     Item: null
@@ -22,8 +24,7 @@ export default class TaskShow extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h1>About task</h1>
+      <div className="show-task">
         {this.state.Item && 
         <div> 
           <div> Title: {this.state.Item.title}</div>

@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text&display=swap');
+
+.show-task {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.5em;
+    text-align: center;
+}

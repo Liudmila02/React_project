@@ -37,18 +37,18 @@ export default class TaskForm extends Component {
 }
   render() {
     return (
-      <div>
-        <h1>Create new task</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
+      <div className="gradient-box">   
+        <p>New task</p>     
+        <form className="form-group" onSubmit={this.handleSubmit}>
+          <label className="title-input">
             Title:
-            <input type="title" name="title"  onChange={this.handleTitleChange} />
+            <input  className="form-control inline-input" type="title" name="title"  onChange={this.handleTitleChange} />
             </label>
-            <label>
+            <label className="title-input">
             Description:
-            <input type="description" name="description"  onChange={this.handleDescriptionChange} />
+            <input className="form-control inline-input" type="description" name="description"  onChange={this.handleDescriptionChange} />
             </label>
-            <label>
+            <label className="title-input">
             Priority:
             <select value={this.state.value}  onChange={this.handlePriorityChange}>
             <option value="1">Later</option>
@@ -56,19 +56,18 @@ export default class TaskForm extends Component {
             <option value="3">Now</option>
             </select>
             </label>
-            <label>
+            <label className="title-input">
             Due_date:
             <input  type="date" name="due_date"  onChange={this.handleDueDateChange} />
             </label>
-            <label>
+            <label className="title-input">
             Completed:
             <input type="checkbox" name="completed" onChange={this.handleCompletedChange} />
           </label>
-          <button type="submit">Create task</button>
+          <button class="kvasov-btn-gradient btn-color-3" type="submit">Create task</button>
         </form>
       </div>
     )
   }
 }
-
 

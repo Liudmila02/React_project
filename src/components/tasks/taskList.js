@@ -150,32 +150,43 @@ class TaskList extends Component {
         <div className="menu-task">
         <ul>
          <li>
-            <Link type="button" class="btn btn-primary" to="/task">New task</Link>
+            <Link type="button" class="btn btn-success" to="/task">New task</Link>
           </li>
-          <li>
+          {/* <li>
             <Link class="btn btn-primary" to="/tasks">List task</Link>
-          </li>
-          <li><button class="btn btn-primary" onClick={() => this.toggleSortDate()}>Sort by due date</button></li>
-          <li><button class="btn btn-primary" onClick={() => this.toggleSortPriority()}>Sort by priority</button></li>
-          <li><button class="btn btn-primary" onClick={() => this.toggleSortTitle()}>Sort by title</button></li>
-          <li><button class="btn btn-primary" onClick={() => this.toggleListReverse()}>Reverse</button></li>
-          <li><button class="btn btn-primary" onClick={() => this.deleteChecked()}>Delete checked</button></li>
+          </li> */}
+          <div class="btn-group">
+            <button type="button" class="btn btn-warning">Sort</button>
+            <button type="button" class="btn  btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" onClick={() => this.toggleSortTitle()}>Sort by title</a>
+              <a class="dropdown-item" onClick={() => this.toggleSortPriority()}>Sort by priority</a>
+              <a class="dropdown-item" onClick={() => this.toggleSortDate()}>Sort by due date</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" onClick={() => this.toggleListReverse()}>Reverse</a>
+            </div>
+          </div>
+          <li><button class="btn btn-danger" onClick={() => this.deleteChecked()}>Delete checked</button></li>
         </ul>
         </div>
-        <div className="task-list">
-          <div>
+        <div>
+          <div className="task-list">
           {this.state.listItems.filter(item => item.completed == false).map(listitem => (
             <TaskListItem task={listitem} handleDelete={this.deleteItem} handleComplete={this.completedItem}/>
             ))}
           </div>
-        <hr/>
-        <div className="completed">
-          {this.state.listItems.filter(item => item.completed == true).map(listitem => (
-            <TaskListItem task={listitem} handleDelete={this.deleteItem} />
-            ))}
+          <hr/>
+          <div className="completed">
+            {this.state.listItems.filter(item => item.completed == true).map(listitem => (
+              <TaskListItem task={listitem} handleDelete={this.deleteItem} />
+              ))}
+          </div>
         </div>
-        </div>
+        
       </Fragment>
+      
     );
   }
 }

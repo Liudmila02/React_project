@@ -1,10 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap');
+.title-task {
+    font-family: 'Libre Baskerville', serif;
+}
 .btn-circle {
-    width: 70px;
-    height: 70px;
-    border-radius: 35px;
-    text-align: center;
-    padding-left: 0;
-    padding-right: 0;
-    font-size: 16px;
-    white-space: normal; /* восстанавливаем свойству значение по умолчанию */
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 30px;
+  font-size: 16px;
+  white-space: normal; /* восстанавливаем свойству значение по умолчанию */
+  
+}
+
+.fa-edit {
+  position: relative;
+  left: 2px;
+  top: 13px;
+  font-size:30px;
+}
+
+.fa-eye {
+  position: relative;
+  left: -1px;
+  top: 11px;
+  font-size:30px;
+
+}
+
+.fa-trash {
+  font-size:30px;
+}
+
+.fa-check {
+  font-size:30px;
+}
+
+.buttons {
+    margin: 150px ;
 }

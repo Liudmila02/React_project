@@ -2,6 +2,8 @@ import React, { Link } from "react";
 import {request} from '../../utils/axios';
 import nav from '../../utils/nav'
 
+import '../../style/taskForm.css'
+
 export default class TaskEdit extends React.Component {
   constructor(props){
     super(props);
@@ -81,20 +83,20 @@ export default class TaskEdit extends React.Component {
   render() {
     console.log(this.props)
     return (
-      <div>
-        <h1>Edit form</h1>
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <label>
+      <div className="gradient-box">
+        <p>Edit form</p>
+        <form className="form-group" onSubmit={this.onSubmit.bind(this)}>
+          <label className="title-input">
             Title:
-            <input type="text" name="title" ref="title" value={this.state.title} 
+            <input className="form-control inline-input" type="text" name="title" ref="title" value={this.state.title} 
             onChange={this.handleInputChange}  />
             </label>
-            <label>
+            <label className="title-input">
             Description:
-            <input type="text" name="description" ref="description" value={this.state.description} 
+            <input className="form-control inline-input" type="text" name="description" ref="description" value={this.state.description} 
             onChange={this.handleInputChange}  />
             </label>
-            <label>
+            <label className="title-input">
             Priority:
             <select name="priority" ref="priority" value={this.state.priority}
             onChange={this.handleInputChange} >
@@ -103,17 +105,17 @@ export default class TaskEdit extends React.Component {
             <option value="3">3</option>
             </select>
             </label>
-            <label>
+            <label className="title-input">
             Due_date:
             <input  type="date" name="due_date" ref="due_date" value={this.state.due_date} 
             onChange={this.handleInputChange} />
             </label>
-            <label>
+            <label className="title-input">
             Completed:
             <input type="checkbox" name="completed" ref="completed" checked={this.state.completed} 
             onChange={this.handleInputCheckboxChange} />
           </label>
-          <input type="submit" value="Save" className="btn" />
+          <button class="kvasov-btn-gradient btn-color-3" type="submit" value="Save">Save</button>
         </form>
       </div>  
     )

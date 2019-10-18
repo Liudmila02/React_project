@@ -1,29 +1,41 @@
-@import url('https://fonts.googleapis.com/css?family=Mansalva|Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
 
 .menu-task {
   font-size: 1.2em;
   list-style-type: none;
- 
+  text-align: right;
 }
+.btn-success{
+  margin-left: 40px;
+}
+.btn-warning dropdown-toggle dropdown-toggle-split {
+  margin-right: 20px;
+}
+.btn-danger{
+  margin-left: 35px;
+}
+
 .task-list {
-  font-size: 1em;
-  font-family: 'Source Sans Pro', sans-serif;
-  display: inline;
-  
+  font-size: 1.3em;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: -20px;
  
 }
 
 li a {
     margin: 20px 15px;
-    
  }
 
 .completed {
+  font-size: 1.3em;
     color: rgb(95, 90, 90);
     text-decoration: line-through;
-    
-    /* padding: 20px 60px;
-    margin: 20px 20px; */
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  
 }
 
 .uncompleted {

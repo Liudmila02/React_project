@@ -3,6 +3,8 @@ import {reduxForm} from 'redux-form';
 import {validate} from '../../validation/index';
 import axios from 'axios'
 
+import '../../style/signUpForm.css'
+
 export default class signUpForm extends Component {
   state = {
     username: '',
@@ -32,29 +34,30 @@ export default class signUpForm extends Component {
 }
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-        <label>
+      <div className="gradient-box">
+        <p>Sign Up</p>
+        <form className="form-group" onSubmit={this.handleSubmit}>
+        <label className="title-input">
             Username:
-            <input type="text" name="username" onChange={this.handleUserNameChange} />
+            <input className="form-control inline-input" type="text" name="username" onChange={this.handleUserNameChange} />
             </label>
-          <label>
+          <label className="title-input">
             First_name:
-            <input type="text" name="first_name" onChange={this.handleFirsNameChange} />
+            <input className="form-control inline-input" type="text" name="first_name" onChange={this.handleFirsNameChange} />
             </label>
-            <label>
+            <label className="form-control inline-input" className="title-input">
             Last_name:
-            <input type="text" name="last_name" onChange={this.handleLastNameChange} />
+            <input className="form-control inline-input" type="text" name="last_name" onChange={this.handleLastNameChange} />
             </label>
-            <label>
+            <label className="title-input">
             Email:
-            <input type="text" name="email" onChange={this.handleEmailChange} />
+            <input className="form-control inline-input" type="text" name="email" onChange={this.handleEmailChange} />
             </label>
-            <label>
+            <label className="title-input">
             Password:
-            <input type="text" name="password" onChange={this.handlePasswordChange} />
+            <input className="form-control inline-input" type="text" name="password" onChange={this.handlePasswordChange} />
           </label>
-          <button type="submit">Sign Up</button>
+          <button class="kvasov-btn-gradient btn-color-3" type="submit">Sign up</button>
         </form>
       </div>
     )
