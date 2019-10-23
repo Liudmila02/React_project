@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import '../../style/taskListItem.css'
 
 function TaskListItem (props){
-  const { id, title, due_date, priority, completed } = props.task
+  const { id, title, completed, checkTask } = props.task 
 
   return (
     <li key={id}> 
-      <input class="checkbox" type="checkbox" />
+      <label>
+        <input type="checkbox" className="option-input checkbox" value={title} checked = {props.task.checked} onClick={() => props.checkTask(props.task.id)}  />
+      </label>
       <span class="title-task">{title}</span>
       <span class="buttons"> 
       <Link class="btn btn-primary btn-circle" to={`/tasks/${id}/show`} >

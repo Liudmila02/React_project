@@ -100,9 +100,9 @@ export default class TaskEdit extends React.Component {
             Priority:
             <select name="priority" ref="priority" value={this.state.priority}
             onChange={this.handleInputChange} >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+             <option value="1">Later</option>
+            <option value="2">Next</option>
+            <option value="3">Now</option>
             </select>
             </label>
             <label className="title-input">

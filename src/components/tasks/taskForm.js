@@ -42,11 +42,11 @@ export default class TaskForm extends Component {
         <form className="form-group" onSubmit={this.handleSubmit}>
           <label className="title-input">
             Title:
-            <input  className="form-control inline-input" type="title" name="title"  onChange={this.handleTitleChange} />
+            <input  className="form-control inline-input" required type="title" name="title"  onChange={this.handleTitleChange} />
             </label>
             <label className="title-input">
             Description:
-            <input className="form-control inline-input" type="description" name="description"  onChange={this.handleDescriptionChange} />
+            <input className="form-control inline-input" required type="description" name="description"  onChange={this.handleDescriptionChange} />
             </label>
             <label className="title-input">
             Priority:
@@ -58,7 +58,7 @@ export default class TaskForm extends Component {
             </label>
             <label className="title-input">
             Due_date:
-            <input  type="date" name="due_date"  onChange={this.handleDueDateChange} />
+            <input required type="date" name="due_date"  onChange={this.handleDueDateChange} />
             </label>
             <label className="title-input">
             Completed:

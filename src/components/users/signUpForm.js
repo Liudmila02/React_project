@@ -4,6 +4,7 @@ import {validate} from '../../validation/index';
 import axios from 'axios'
 
 import '../../style/signUpForm.css'
+import nav from '../../utils/nav';
 
 export default class signUpForm extends Component {
   state = {
@@ -27,6 +28,7 @@ export default class signUpForm extends Component {
     .then(res => {
       console.log(res);
       console.log(res.data);
+      nav('/')
     })
     .catch(function (err) {
       console.log(err.response);
@@ -34,30 +36,30 @@ export default class signUpForm extends Component {
 }
   render() {
     return (
-      <div className="gradient-box">
+      <div className="border-box">
         <p>Sign Up</p>
         <form className="form-group" onSubmit={this.handleSubmit}>
         <label className="title-input">
             Username:
-            <input className="form-control inline-input" type="text" name="username" onChange={this.handleUserNameChange} />
+            <input className="form-control inline-input" required type="text" name="username" onChange={this.handleUserNameChange} />
             </label>
           <label className="title-input">
             First_name:
-            <input className="form-control inline-input" type="text" name="first_name" onChange={this.handleFirsNameChange} />
+            <input className="form-control inline-input" required type="text" name="first_name" onChange={this.handleFirsNameChange} />
             </label>
             <label className="form-control inline-input" className="title-input">
             Last_name:
-            <input className="form-control inline-input" type="text" name="last_name" onChange={this.handleLastNameChange} />
+            <input className="form-control inline-input" required type="text" name="last_name" onChange={this.handleLastNameChange} />
             </label>
             <label className="title-input">
             Email:
-            <input className="form-control inline-input" type="text" name="email" onChange={this.handleEmailChange} />
+            <input className="form-control inline-input" type="email" name="email" onChange={this.handleEmailChange} />
             </label>
             <label className="title-input">
             Password:
-            <input className="form-control inline-input" type="text" name="password" onChange={this.handlePasswordChange} />
+            <input className="form-control inline-input" required type="password" name="password" onChange={this.handlePasswordChange} />
           </label>
-          <button class="kvasov-btn-gradient btn-color-3" type="submit">Sign up</button>
+          <button class="btn-gradient btn-color-3" type="submit">Sign up</button>
         </form>
       </div>
     )

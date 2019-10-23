@@ -11,26 +11,9 @@ class SignOut extends Component {
     .then((user, error) => {
       this.setState({ redirect: true })
     });
-  };
-    render () {
-      return (
-        <Fragment>
-          <h1 onClick={()=> this.submit() }>Sign Out</h1>
-        </Fragment>
-      );    
-    }
+  }; 
 }
 
-function RouteWithSubRoutes(route) {
-  return (
-    <Route
-      path={route.path}
-      render={props => (
-        <route.component {...props} routes={route.routes} />
-      )}
-    />
-  );
-}
 function RouteConfigExample() {
  const submit = () => {
     request.get('/signout')
@@ -43,6 +26,10 @@ function RouteConfigExample() {
     <nav>
       <ul class="navbar navbar-expand-sm bg-dark navbar-dark">
         <h4 className="logo">Task management system</h4>
+        {/* { ! ? (<button class="btn btn-light" onClick={()=> 
+        submit()}>
+          Sign out 
+          </button>) : undefined  } */}
         <button class="btn btn-light" onClick={()=> submit()}>Sign out </button>
       </ul> 
     </nav>
@@ -51,3 +38,19 @@ function RouteConfigExample() {
 
 export default RouteConfigExample;
 
+ // render () {
+    //   return (
+    //       <button onClick={()=> this.submit() }>Sign Out</button>
+    //   );    
+    // }
+
+    //function RouteWithSubRoutes(route) {
+      //   return (
+      //     <Route
+      //       path={route.path}
+      //       render={props => (
+      //         <route.component {...props} routes={route.routes} />
+      //       )}
+      //     />
+      //   );
+      // }

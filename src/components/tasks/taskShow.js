@@ -24,7 +24,8 @@ export default class TaskShow extends React.Component {
   }
   render() {
     return (
-      <div className="show-task">
+      <div className="border-show">
+        <div className="show-task">
         {this.state.Item && 
         <div> 
           <div> Title: {this.state.Item.title}</div>
@@ -35,6 +36,7 @@ export default class TaskShow extends React.Component {
         </div>
         }
         <Link type="button" class="btn btn-info btn-rounded" to = "/tasks">Back</Link> 
+        </div>
       </div>
     );
   }

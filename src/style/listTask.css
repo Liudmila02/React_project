@@ -1,17 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap');
 
 .menu-task {
   font-size: 1.2em;
   list-style-type: none;
   text-align: right;
 }
-.btn-success{
+.btn-success {
   margin-left: 40px;
 }
+
 .btn-warning dropdown-toggle dropdown-toggle-split {
   margin-right: 20px;
 }
-.btn-danger{
+
+.btn-danger {
   margin-left: 35px;
 }
 
@@ -21,13 +23,23 @@
   flex-direction: column;
   text-align: center;
   margin: -20px;
- 
 }
 
 li a {
     margin: 20px 15px;
  }
-
+ li {
+  list-style-type: none;
+  display: inline; 
+  /* color: black; */
+   position: static;
+  padding: 14px 16px;
+  text-decoration: none; 
+  font-family: 'Cabin', sans-serif;
+  font-size: 1.2em;
+  list-style-type: none;
+  margin-right: 2em;
+}
 .completed {
   font-size: 1.3em;
     color: rgb(95, 90, 90);

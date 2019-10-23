@@ -5,6 +5,8 @@ import {validate} from '../../validation/index';
 import {request} from '../../utils/axios';
 import nav from '../../utils/nav'
 
+import '../../style/loginForm.css'
+
 export default class LoginForm extends Component {
   state = {
     email: '',
@@ -31,7 +33,7 @@ export default class LoginForm extends Component {
 }
 render() {
   return (
-    <div className="gradient-box">
+    <div className="border-gradient-box">
       <p>Login</p>
       <form className="form-group" onSubmit={this.handleSubmit}>
         <label className="title-input">
@@ -42,15 +44,11 @@ render() {
           Password:
           <input className="form-control inline-input" type="password" name="password" onChange={this.handlePasswordChange} />
         </label>
-        <button class="kvasov-btn-gradient btn-color-3" type="submit">Login</button>
+        <button class="btn-btn-gradient btn-color-3" type="submit">Login</button>
       </form>
     </div>
   )
 }
 }
 
-LoginForm = reduxForm ({
-  form: 'login',
-  validate,
-}) (LoginForm);
 

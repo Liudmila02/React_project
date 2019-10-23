@@ -2,20 +2,22 @@ import React, { Component, Fragment } from "react";
 import { request } from '../../utils/axios';
 import { Link } from 'react-router-dom';
 import TaskListItem from './taskListItem';
+import nav from '../../utils/nav'
 
 import '../../style/listTask.css';
 
 class TaskList extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      listItems: [],
+      checking: false,
+      isOldestFirst: true
+    }; 
     this.toggleListReverse = this.toggleListReverse.bind(this)
     this.toggleSortDate = this.toggleSortDate.bind(this)
     this.toggleSortPriority = this.toggleSortPriority.bind(this)
-    this.toggleTitlePriority = this.toggleSortTitle.bind(this)
-    this.state = {
-      listItems: [],
-      isOldestFirst: true
-    };
+    this.toggleSortTitle = this.toggleSortTitle.bind(this)
   }
 
   sortByDate(){
@@ -96,10 +98,8 @@ class TaskList extends Component {
           return item.id !== key
         })
         this.setState({
-          listItems: filteredTasks,
-          
+          listItems: filteredTasks, 
         })
-        console.log(this.setState)
         console.log(res);
         console.log(res.data);
         window.location.href='/tasks'
@@ -109,11 +109,11 @@ class TaskList extends Component {
       })
   }
   
-  deleteItem = key => {
-    request.delete(`/api/tasks/${key}`)
+  deleteItem = (deleteId) => {
+      request.delete(`/api/tasks/${deleteId}`)
       .then(res => {
         const filteredItems = this.state.listItems.filter(item => {
-          return item.id !== key
+          return item.id !== deleteId
         })
         this.setState({
           listItems: filteredItems,
@@ -126,23 +126,52 @@ class TaskList extends Component {
       })
   }
 
-  deleteChecked = items => {
-    request.delete(`/api/tasks/${items}`, {checked: true})
-      .then(res => {
-        const filteredItems = this.state.listItems.filter(item => {
-          return item.id !== items
-        })
-        this.setState({
-          listItems: filteredItems,
-        })
-        console.log(res);
-        console.log(res.data);
+  removeChecked = () => {
+    let deleteIds = []
+    let newTasks = []
+      this.state.listItems.map(item => {
+      if (item.checked)
+        deleteIds.push(item.id)
+      else newTasks.push(item)
+      console.log(newTasks)
+        this.setState({listItems: newTasks})
       })
-      .catch(function (err) {
-        console.log(err.response);
-      })
+    request.delete(`/api/tasks/${deleteIds}`)
+   
+    .then(res => {
+      const filteredTasks = this.state.listItems.filter(item => {
+      return item.id !== deleteIds
+    })
+    this.setState({
+      listItems: filteredTasks,
+    })
+      console.log(res);
+      console.log(res.data);
+      
+    })
+    .catch(function (err) {
+      console.log(err.response);
+    })
+}
+  checkItAll = (event) => {
+    let listItems = this.state.listItems
+    listItems.forEach(item => {
+      item.checked = event.target.checked
+      if(item.checked)
+      {
+        this.setState({checking: true})
+      }else {
+        this.setState({checked: false})
+      }
+    })
+    this.setState({listItems: listItems})
   }
-  
+  checkTask = id => {
+    let tasks = this.state.listItems
+    let index = tasks.findIndex(i=> i.id == id)
+    tasks[index].checked = !tasks[index].checked 
+    this.setState({ listItems: tasks })
+  }
   render() {
     console.log('list')
     return (
@@ -168,19 +197,22 @@ class TaskList extends Component {
               <a class="dropdown-item" onClick={() => this.toggleListReverse()}>Reverse</a>
             </div>
           </div>
-          <li><button class="btn btn-danger" onClick={() => this.deleteChecked()}>Delete checked</button></li>
+          <li><button class="btn btn-danger" onClick={() => this.removeChecked()}>Delete checked</button></li>
+          <label>
+          <input type="checkbox" checked = {this.state.checking} onClick={this.checkItAll} /> Check / Uncheck All
+          </label>
         </ul>
         </div>
         <div>
           <div className="task-list">
           {this.state.listItems.filter(item => item.completed == false).map(listitem => (
-            <TaskListItem task={listitem} handleDelete={this.deleteItem} handleComplete={this.completedItem}/>
+            <TaskListItem checkTask={this.checkTask} task={listitem} handleDelete={this.deleteItem} handleComplete={this.completedItem}/>
             ))}
           </div>
           <hr/>
           <div className="completed">
             {this.state.listItems.filter(item => item.completed == true).map(listitem => (
-              <TaskListItem task={listitem} handleDelete={this.deleteItem} />
+              <TaskListItem checkTask={this.checkTask} task={listitem} handleDelete={this.deleteItem} />
               ))}
           </div>
         </div>
