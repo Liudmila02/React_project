@@ -216,9 +216,7 @@ class TaskList extends Component {
               ))}
           </div>
         </div>
-        
       </Fragment>
-      
     );
   }
 }

@@ -37,20 +37,3 @@ function RouteConfigExample() {
 }
 
 export default RouteConfigExample;
-
- // render () {
-    //   return (
-    //       <button onClick={()=> this.submit() }>Sign Out</button>
-    //   );    
-    // }
-
-    //function RouteWithSubRoutes(route) {
-      //   return (
-      //     <Route
-      //       path={route.path}
-      //       render={props => (
-      //         <route.component {...props} routes={route.routes} />
-      //       )}
-      //     />
-      //   );
-      // }

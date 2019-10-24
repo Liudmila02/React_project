@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import {reduxForm} from 'redux-form';
-import {validate} from '../../validation/index';
-
 import {request} from '../../utils/axios';
 import nav from '../../utils/nav'
 
