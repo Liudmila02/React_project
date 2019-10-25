@@ -41,7 +41,7 @@ render() {
           Password:
           <input className="form-control inline-input" type="password" name="password" onChange={this.handlePasswordChange} />
         </label>
-        <button class="btn-btn-gradient btn-color-3" type="submit">Login</button>
+        <button className="btn-btn-gradient btn-color-3" type="submit">Login</button>
       </form>
     </div>
   )
