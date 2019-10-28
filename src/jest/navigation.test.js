@@ -1,15 +1,23 @@
-// import React from "react";
-// import Navigation from "../components/navigation";
-// import { mount } from "enzyme";
+import React from "react";
+import Navigation from "../components/navigation";
+import nock from 'nock';
 
-// describe("Component render", () => {
-//   beforeEach(() => {
-//     localStorage.clear();
-//   });
+describe("Component render", () => {
+    let component
 
-//   it("should render guest header, if token is empty", () => {
-//     const wrapper = mount(<Navigation />);
-//     expect(wrapper.find("#logo")).toHaveLength(1);
-//     expect(wrapper.find("#signout")).toHaveLength(1);
-//   });
-// });
+  it("should render navigation for site", () => {
+    component = shallow(<Navigation />); 
+  });
+
+  it('sign out with account', async () =>{
+    const profileScope = nock('http://localhost:4000/')
+    .persist()
+    .get("/signout")
+    .reply(200, {} );
+    
+    component.find('button').simulate ('click');
+    await waitFor(2000)
+    expect(window.location.pathname).toBe('/login');  
+    nock.cleanAll()
+  });
+})

@@ -35,7 +35,6 @@ export default class TaskEdit extends React.Component {
           due_date: response.data.task.due_date.split('T')[0],
           completed: response.data.task.completed
         }, () => {
-          console.log(this.state);
         })
       })
       .catch(err =>  console.log(err));
@@ -81,7 +80,6 @@ export default class TaskEdit extends React.Component {
     });
   }
   render() {
-    console.log(this.props)
     return (
       <div className="gradient-box">
         <p>Edit form</p>
@@ -115,7 +113,7 @@ export default class TaskEdit extends React.Component {
             <input type="checkbox" name="completed" ref="completed" checked={this.state.completed} 
             onChange={this.handleInputCheckboxChange} />
           </label>
-          <button class="kvasov-btn-gradient btn-color-3" type="submit" value="Save">Save</button>
+          <button className="kvasov-btn-gradient btn-color-3" type="submit" value="Save">Save</button>
         </form>
       </div>  
     )

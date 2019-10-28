@@ -10,8 +10,7 @@ function waitFor(time) {
     });
    }
    global.waitFor = waitFor;
-   
+ 
 global.shallow = shallow
 global.render = render
 global.mount = mount
-console.log('QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ')

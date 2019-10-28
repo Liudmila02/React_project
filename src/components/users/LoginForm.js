@@ -18,10 +18,8 @@ export default class LoginForm extends Component {
 
     request.post('/api/login', { email: this.state.email, password: this.state.password })
     .then(res => {
-      console.log(res);
-      console.log(res);
       console.log('history')
-      
+
       nav('/tasks')
     })
     .catch(function (err) {

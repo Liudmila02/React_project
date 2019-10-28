@@ -16,7 +16,7 @@ return (
           <Link type="button" className="btn btn-outline-primary" to="/signUp">Sign up</Link>
         </li>
         <li>
-          <Link type="button" class="btn btn-outline-primary" to="/login">Login</Link>
+          <Link type="button" className="btn btn-outline-primary" to="/login">Login</Link>
         </li>
       </ul>
     </div>

@@ -1,63 +1,34 @@
-// import React from "react";
-// import { mount } from "enzyme";
-// import TaskForm from "../../../components/tasks/taskForm";
-// import { Router } from "react-router-dom";
+import React from 'react';
+import TaskForm from '../../../components/tasks/taskForm';
+import nock from 'nock';
 
-// describe("Component", () => {
-//   const onDeleteTask = jest.fn();
-//   const onCompletedTask = jest.fn();
-//   const wrapper = mount(
+describe('Test case for testing TaskForm', () => {
+  let component
+
+  it('input check', () => {
+    component = mount(<TaskForm/>);
     
-//         <TaskForm
-//           task={{
-//             title: "sdsd",
-//             priority: "1",
-//             description: "dffdfdf",
-//             due_date: "12/12/12",
-//             completed: "false"
-//           }}
-//           onDeleteTask={onDeleteTask}
-//           onCompletedTask={onCompletedTask}
-//         />
-     
-//   );
-
-//   it("should render h2 h3 h4 ", () => {
-//     expect(component.find("h2")).toHaveLength(1);
-//     expect(component.find("h3")).toHaveLength(1);
-//     expect(component.find("h4")).toHaveLength(1);
-//   });
-
-//   it("should render form", () => {
-//     expect(wrapper.find("label")).toHaveLength(2);
-//     expect(wrapper.find("span")).toHaveLength(6);
-//   });
-
-//   it("should run handleDone", () => {
-//     const component = wrapper.find("TaskForm");
-//     const btn = component.find("#btnshow");
-//     btn.simulate("click");
-//     expect(component.props().onShowTask).toHaveBeenCalled();
-//   });
-
-//   it("should run handleDone", () => {
-//     const component = wrapper.find("TaskForm");
-//     const btn = component.find("#btnedit");
-//     btn.simulate("click");
-//     expect(component.props().onEditTask).toHaveBeenCalled();
-//   });
-
-//   it("should run handleDone", () => {
-//     const component = wrapper.find("TaskForm");
-//     const btn = component.find("#btndone");
-//     btn.simulate("click");
-//     expect(component.props().onCompletedTask).toHaveBeenCalled();
-//   });
-
-//   it("should run handledelete", () => {
-//     const component = wrapper.find("TaskForm");
-//     const btn = component.find("#btndelete");
-//     btn.simulate("click");
-//     expect(component.props().onDeleteTask).toHaveBeenCalled();
-//   });
-// });
+    component.find('input[type="text"]').simulate('change', { target: { value: 'task' }});
+    expect(component.state('title')).toEqual('task');
+    component.find('input[type="text"]').simulate('change', { target: { value: 'cooking' }});
+    expect(component.state('description')).toEqual('cooking');
+    component.find('select[type="select"]').simulate('change', { target: { value: '1' }});
+    expect(component.state('priority')).toEqual('1');
+    component.find('input[type="date"]').simulate('change', { target: { value: '10/02/2019' }});
+    expect(component.state('duedate')).toEqual('10/02/2019');
+    component.find('input[type="checkbox"]').simulate('change', { target: { value: 'false' }});
+    expect(component.state('completed')).toEqual('false');
+   })
+  
+  it('TaskForm check with right data', async () => {
+    const profileScope = nock('http://localhost:4000/')
+    .persist()
+    .post("/api/tasks")
+    .reply(200, { task: { title: 'task', description: 'cooking', priority: '1', due_date: '10/02/2019', completed: 'false' }} );
+    
+    component.find('button').simulate('submit');
+    await waitFor(2000)
+    expect(window.location.pathname).toBe('/tasks');  
+    nock.cleanAll()
+  }) 
+})

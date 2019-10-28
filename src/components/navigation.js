@@ -24,13 +24,13 @@ function RouteConfigExample() {
 
   return (
     <nav>
-      <ul class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <ul className="navbar navbar-expand-sm bg-dark navbar-dark">
         <h4 className="logo">Task management system</h4>
-        {/* { ! ? (<button class="btn btn-light" onClick={()=> 
+        {/* { ! ? (<button className="btn btn-light" onClick={()=> 
         submit()}>
           Sign out 
           </button>) : undefined  } */}
-        <button class="btn btn-light" onClick={()=> submit()}>Sign out </button>
+        <button className="btn btn-light" onClick={()=> submit()}>Sign out </button>
       </ul> 
     </nav>
   )

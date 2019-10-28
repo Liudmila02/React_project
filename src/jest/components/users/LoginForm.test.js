@@ -4,10 +4,8 @@ import nock from 'nock';
 
 describe('Test case for testing login',() =>{
   let component
-  beforeEach(() => {
-    component = mount(<LoginForm />)
-  })
-  it('input check',()=>{
+
+  it('input check', () =>{
     component = mount(<LoginForm/>);
     component.find('input[type="email"]').simulate('change', {target: {name: 'email', value: 'good@gmail.com'}});
     expect(component.state('email')).toEqual('good@gmail.com');
@@ -19,12 +17,11 @@ describe('Test case for testing login',() =>{
     const profileScope = nock('http://localhost:4000/')
     .persist()
     .post("/api/login")
-    .reply(200, { user: {id: 1, email: 'good@gmail.com', password: 'password123' }} );
+    .reply(200, { user: { email: 'good@gmail.com', password: 'password123' }} );
     
-    component.find('button').simulate('click');
+    component.find('button').simulate ('submit');
     await waitFor(2000)
     expect(window.location.pathname).toBe('/tasks');  
     nock.cleanAll()
-  })
- 
+  }) 
 })

@@ -25,9 +25,6 @@ export default class TaskForm extends Component {
     request.post('/api/tasks',
     { title: this.state.title, description: this.state.description, priority: this.state.priority, due_date: this.state.due_date, completed: this.state.completed },)
     .then(res => {
-      console.log(res);
-      console.log(res.data);
-      console.log('history')
       
       nav('/tasks')
     })
@@ -42,29 +39,29 @@ export default class TaskForm extends Component {
         <form className="form-group" onSubmit={this.handleSubmit}>
           <label className="title-input">
             Title:
-            <input  className="form-control inline-input" required type="title" name="title"  onChange={this.handleTitleChange} />
-            </label>
-            <label className="title-input">
+            <input  className="form-control inline-input" required type="text" name="title"  onChange={this.handleTitleChange} />
+          </label>
+          <label className="title-input">
             Description:
-            <input className="form-control inline-input" required type="description" name="description"  onChange={this.handleDescriptionChange} />
-            </label>
-            <label className="title-input">
+            <input className="form-control inline-input" required type="text" name="description"  onChange={this.handleDescriptionChange} />
+          </label>
+          <label className="title-input">
             Priority:
             <select value={this.state.value}  onChange={this.handlePriorityChange}>
             <option value="1">Later</option>
             <option value="2">Next</option>
             <option value="3">Now</option>
             </select>
-            </label>
-            <label className="title-input">
+          </label>
+          <label className="title-input">
             Due_date:
             <input required type="date" name="due_date"  onChange={this.handleDueDateChange} />
-            </label>
-            <label className="title-input">
+          </label>
+          <label className="title-input">
             Completed:
             <input type="checkbox" name="completed" onChange={this.handleCompletedChange} />
           </label>
-          <button class="kvasov-btn-gradient btn-color-3" type="submit">Create task</button>
+          <button className="kvasov-btn-gradient btn-color-3" type="submit">Create task</button>
         </form>
       </div>
     )
