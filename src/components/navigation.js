@@ -2,23 +2,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component, Fragment} from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { request } from '../utils/axios'
+import nav from '../utils/nav'
 
 import '../style/nav.css'
 
-class SignOut extends Component {
-  submit = () => {
-    request.get('/signout')
-    .then((user, error) => {
-      this.setState({ redirect: true })
-    });
-  }; 
-}
+// class SignOut extends Component {
+//   submit = () => {
+//     request.get('/signout')
+//     .then((user, error) => {
+//       this.setState({ redirect: true })
+//     });
+//   }; 
+// }
 
-function RouteConfigExample() {
+function Navigation() {
  const submit = () => {
     request.get('/signout')
     .then((user, error) => {
-     window.location.href='/login'
+      nav('/login')
     });
   };
 
@@ -35,5 +36,4 @@ function RouteConfigExample() {
     </nav>
   )
 }
-
-export default RouteConfigExample;
+export default Navigation;

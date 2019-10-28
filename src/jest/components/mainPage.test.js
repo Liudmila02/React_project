@@ -1,22 +1,32 @@
-// import React from "react";
-// import mainPage from "../../components/mainPage";
-// import { mount } from "enzyme";
+import React from "react";
+import MainPage from "../../components/mainPage";
+import nock from 'nock';
 
-// describe("Component render", () => {
-//   beforeEach(() => {
-//     localStorage.clear();
-//   });
-//   it("should render h2", () => {
-//     expect(wrapper.find("h2")).toHaveLength(0);
-//   });
+describe("Component render", () => {
+  let component
 
-//   it("should render h3", () => {
-//     expect(wrapper.find("h3")).toHaveLength(2);
-//   });
-
-//   it("should render guest header, if token is empty", () => {
-//     const wrapper = mount(<mainPage />);
-//     expect(wrapper.find("#signin")).toHaveLength(1);
-//     expect(wrapper.find("#signup")).toHaveLength(1);
-//   });
-// });
+  it('sign up in account', async () =>{
+    component = mount(<MainPage />);
+    const profileScope = nock('http://localhost:4000/')
+    .persist()
+    .post("/signUp")
+    .reply(200, { user: { email: null, password: null} } );
+    
+    component.find('button').simulate ('submit');
+    await waitFor(2000)
+    expect(window.location.pathname).toBe('/signUp');  
+    nock.cleanAll()
+  });
+  it('sign in account', async () =>{
+    component = mount(<MainPage />);
+    const profileScope = nock('http://localhost:4000/')
+    .persist()
+    .post("/login")
+    .reply(200, { user: { email: null, password: null} } );
+    
+    component.find('button').simulate ('submit');
+    await waitFor(2000)
+    expect(window.location.pathname).toBe('/tasks');  
+    nock.cleanAll()
+  });
+})
