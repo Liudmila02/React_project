@@ -39,15 +39,15 @@ export default class TaskForm extends Component {
         <form className="form-group" onSubmit={this.handleSubmit}>
           <label className="title-input">
             Title:
-            <input  className="form-control inline-input" required type="text" name="title"  onChange={this.handleTitleChange} />
+            <input  className="form-control inline-input" required type="text" id="title" name="title"  onChange={this.handleTitleChange} />
           </label>
           <label className="title-input">
             Description:
-            <input className="form-control inline-input" required type="text" name="description"  onChange={this.handleDescriptionChange} />
+            <input className="form-control inline-input" required type="text" id="description" name="description"  onChange={this.handleDescriptionChange} />
           </label>
           <label className="title-input">
             Priority:
-            <select value={this.state.value}  onChange={this.handlePriorityChange}>
+            <select id="priority" value={this.state.value}  onChange={this.handlePriorityChange}>
             <option value="1">Later</option>
             <option value="2">Next</option>
             <option value="3">Now</option>
@@ -61,7 +61,7 @@ export default class TaskForm extends Component {
             Completed:
             <input type="checkbox" name="completed" onChange={this.handleCompletedChange} />
           </label>
-          <button className="kvasov-btn-gradient btn-color-3" type="submit">Create task</button>
+          <button className="kvasov-btn-gradient btn-color-3" type="submit" onClick={()=> this.props.history.push('/tasks')}>Create task</button>
         </form>
       </div>
     )

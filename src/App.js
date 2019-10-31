@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Router, Route} from 'react-router-dom'
+import { BrowserRouter, Route} from 'react-router-dom'
 
 import Home from './components/navigation'
 import LoginForm from './components/users/LoginForm'
@@ -15,18 +15,18 @@ import history from './utils/history'
 class App extends Component {
  render () {
     return (
-      <Router history={history}>
+      <BrowserRouter history={history}>
         <div>
-        <Home />
-        <Route exact path="/" component={MainPage} />
-        <Route path="/login" component={LoginForm} />
-        <Route path="/signup" component={signUpForm} />
-        <Route path="/task" component={TaskForm} />
-        <Route exact path="/tasks" component={TaskList} />
-        <Route path="/tasks/:taskId/edit" component={TaskEdit} />
-        <Route path="/tasks/:taskId/show" component={TaskShow} />
+          <Home />
+          <Route exact path="/" component={MainPage} />
+          <Route path="/login" component={LoginForm} />
+          <Route path="/signUp" component={signUpForm} />
+          <Route path="/task" component={TaskForm} />
+          <Route exact path="/tasks" component={TaskList} />
+          <Route path="/tasks/:taskId/edit" component={TaskEdit} />
+          <Route path="/tasks/:taskId/show" component={TaskShow} /> 
         </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }

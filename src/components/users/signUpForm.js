@@ -36,15 +36,15 @@ export default class signUpForm extends Component {
         <form className="form-group" onSubmit={this.handleSubmit}>
         <label className="title-input">
           Username:
-          <input className="form-control inline-input" required type="text" name="username" onChange={this.handleUserNameChange} />
+          <input className="form-control inline-input" required type="text" name="username" id="username" onChange={this.handleUserNameChange} />
         </label>
         <label className="title-input">
           First_name:
-          <input className="form-control inline-input" required type="text" name="first_name" onChange={this.handleFirsNameChange} />
+          <input className="form-control inline-input" required type="text" name="first_name" id="Fname" onChange={this.handleFirsNameChange} />
         </label>
         <label className="form-control inline-input" className="title-input">
           Last_name:
-          <input className="form-control inline-input" required type="text" name="last_name" onChange={this.handleLastNameChange} />
+          <input className="form-control inline-input" required type="text" name="last_name" id="Lname" onChange={this.handleLastNameChange} />
         </label>
         <label className="title-input">
           Email:

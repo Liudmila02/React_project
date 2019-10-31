@@ -38,7 +38,7 @@ export default class TaskEdit extends React.Component {
         })
       })
       .catch(err =>  console.log(err));
-      }
+  }
 
   editTask(newTask){
     request({

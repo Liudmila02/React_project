@@ -1,11 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { request } from '../utils/axios'
+import nav from '../utils/nav'
+import { withRouter } from "react-router";
 
 import '../style/mainPage.css'
 
-function MainPage() {
-
-return (
+class MainPage extends React.Component {
+    
+render(){
+ return (
   <nav>
     <div className="main-page">
       <h2>Welcome to task management system!</h2>
@@ -13,14 +16,15 @@ return (
         You will be able to specify the due date and select the priority of the task.</h3>
       <ul>
         <li>
-          <Link type="button" className="btn btn-outline-primary" to="/signUp">Sign up</Link>
+          <button id="signUp" type="button" className="btn btn-outline-primary" onClick={()=> this.props.history.push('/signUp')}>Sign up</button>
         </li>
         <li>
-          <Link type="button" className="btn btn-outline-primary" to="/login">Login</Link>
+          <button id="login" type="button" className="btn btn-outline-primary" onClick={()=> this.props.history.push('/login')}>Login</button>
         </li>
       </ul>
     </div>
   </nav> 
   )
 }
-export default MainPage;
+}
+export default withRouter(MainPage);

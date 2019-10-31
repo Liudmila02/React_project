@@ -27,15 +27,15 @@ export default class TaskShow extends React.Component {
       <div className="border-show">
         <div className="show-task">
         {this.state.Item && 
-        <div> 
-          <div> Title: {this.state.Item.title}</div>
-          <div> Description: {this.state.Item.description}</div>
-          <div> Priority: {this.state.Item.priority}</div>
-          <div> Due date: {this.state.Item.due_date.split('T')[0]}</div>
-          <div> Completed: {this.state.Item.completed==false ? 'uncompleted' : 'completed'}</div>
-        </div>
+          <div> 
+            <div> Title: {this.state.Item.title}</div>
+            <div> Description: {this.state.Item.description}</div>
+            <div> Priority: {this.state.Item.priority}</div>
+            <div> Due date: {this.state.Item.due_date.split('T')[0]}</div>
+            <div> Completed: {this.state.Item.completed==false ? 'uncompleted' : 'completed'}</div>
+          </div>
         }
-        <Link type="button" classNmae="btn btn-info btn-rounded" to = "/tasks">Back</Link> 
+        <Link type="button" className="btn btn-info btn-rounded" to = "/tasks">Back</Link> 
         </div>
       </div>
     );

@@ -1,5 +1,29 @@
+import React from 'react';
+import TaskList from '../../../components/tasks/taskList'
+import { BrowserRouter} from 'react-router-dom'
+import nock from 'nock';
+
+describe('Test case for testing list tasks',() =>{
+  let component
+
+  it('button new task', async ()=>{
+    component = mount(
+    <BrowserRouter>
+      <TaskList/>
+    </BrowserRouter>);
+    const profileScope = nock('http://localhost:4000/')
+    .persist()
+    .post("/api/tasks")
+    .reply(200, { task: { title: 'task', description: 'cooking', priority: '1', due_date: '10/10/2019', completed: 'false' }} );
+    
+    component.find('button').simulate ('submit');
+    await waitFor(2000)
+    expect(window.location.pathname).toBe('/task');  
+    nock.cleanAll()
+  }) 
 
 
+})
 
 
 

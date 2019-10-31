@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import Routes from '../App';
+import BrowserRouter from '../App';
 import { Route } from 'react-router-dom';
 
 import MainPage from '../components/mainPage';
@@ -14,7 +14,7 @@ import TaskShow from '../components/tasks/taskShow';
 describe('routes using array of routers', () => {
   let pathMap = {};
   beforeAll(() => {
-    const component = mount(<Routes/>);
+    const component = mount(<BrowserRouter/>);
     pathMap = component.find(Route).reduce((pathMap, route) => {
         const routeProps = route.props();
         pathMap[routeProps.path] = routeProps.component;

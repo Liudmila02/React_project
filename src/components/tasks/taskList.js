@@ -3,6 +3,7 @@ import { request } from '../../utils/axios';
 import { Link } from 'react-router-dom';
 import TaskListItem from './taskListItem';
 import nav from '../../utils/nav'
+import { withRouter } from "react-router";
 
 import '../../style/listTask.css';
 
@@ -18,6 +19,20 @@ class TaskList extends Component {
     this.toggleSortDate = this.toggleSortDate.bind(this)
     this.toggleSortPriority = this.toggleSortPriority.bind(this)
     this.toggleSortTitle = this.toggleSortTitle.bind(this)
+  }
+
+  componentDidMount() {
+    request.get('/api/tasks')
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        this.setState({
+          listItems: res.data
+        })
+      })
+      .catch(function (err) {
+        console.log(err.response);
+      });
   }
 
   sortByDate(){
@@ -76,33 +91,15 @@ class TaskList extends Component {
     })
   }
 
-  componentDidMount() {
-    request.get('/api/tasks')
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-        this.setState({
-          listItems: res.data
-        })
-      })
-      .catch(function (err) {
-        console.log(err.response);
-      });
-  }
-
   completedItem = key => {
     request.put(`/api/tasks/${key}`, { completed: true})
       .then(res => {
-        const task = res.data
-        const filteredTasks = this.state.listItems.filter(item => {
-          return item.id !== key
-        })
+        const task = this.state.listItems.findIndex(i => i.id == key)
+        const filteredTasks = this.state.listItems
+        filteredTasks[task].completed = true
         this.setState({
           listItems: filteredTasks, 
-        })
-        console.log(res);
-        console.log(res.data);
-        window.location.href='/tasks'
+        })       
       })
       .catch(function (err) {
         console.log(err.response);
@@ -173,7 +170,6 @@ class TaskList extends Component {
     this.setState({ listItems: tasks })
   }
   render() {
-    console.log('list')
     return (
       <Fragment>
         <div className="menu-task">
@@ -221,5 +217,5 @@ class TaskList extends Component {
   }
 }
 
-export default TaskList;
+export default withRouter(TaskList);
 
