@@ -79,6 +79,7 @@ export default class TaskEdit extends React.Component {
       [e.target.name]: checked
     });
   }
+  
   render() {
     return (
       <div className="gradient-box">
@@ -86,17 +87,17 @@ export default class TaskEdit extends React.Component {
         <form className="form-group" onSubmit={this.onSubmit.bind(this)}>
           <label className="title-input">
             Title:
-            <input className="form-control inline-input" type="text" name="title" ref="title" value={this.state.title} 
+            <input id="title" className="form-control inline-input" type="text" name="title" ref="title" value={this.state.title} 
             onChange={this.handleInputChange}  />
             </label>
             <label className="title-input">
             Description:
-            <input className="form-control inline-input" type="text" name="description" ref="description" value={this.state.description} 
+            <input id="description" className="form-control inline-input" type="text" name="description" ref="description" value={this.state.description} 
             onChange={this.handleInputChange}  />
             </label>
             <label className="title-input">
             Priority:
-            <select name="priority" ref="priority" value={this.state.priority}
+            <select id="priority" name="priority" ref="priority" value={this.state.priority}
             onChange={this.handleInputChange} >
              <option value="1">Later</option>
             <option value="2">Next</option>
@@ -110,10 +111,10 @@ export default class TaskEdit extends React.Component {
             </label>
             <label className="title-input">
             Completed:
-            <input type="checkbox" name="completed" ref="completed" checked={this.state.completed} 
+            <input id="check" type="checkbox" name="completed" ref="completed" checked={this.state.completed} 
             onChange={this.handleInputCheckboxChange} />
           </label>
-          <button className="kvasov-btn-gradient btn-color-3" type="submit" value="Save">Save</button>
+          <button id="btnSave" className="kvasov-btn-gradient btn-color-3" type="submit" value="Save">Save</button>
         </form>
       </div>  
     )

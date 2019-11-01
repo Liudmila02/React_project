@@ -169,6 +169,7 @@ class TaskList extends Component {
     tasks[index].checked = !tasks[index].checked 
     this.setState({ listItems: tasks })
   }
+
   render() {
     return (
       <Fragment>

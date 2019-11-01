@@ -17,7 +17,7 @@ export default class TaskForm extends Component {
   handleDescriptionChange = event => {this.setState({ description: event.target.value })}
   handlePriorityChange = event => {this.setState({ priority: event.target.value })}
   handleDueDateChange = event => {this.setState({ due_date: event.target.value })}
-  handleCompletedChange = event => {this.setState({ completed: event.target.cheked })}
+  handleCompletedChange = event => {this.setState({ completed: event.target.checked })}
   
   handleSubmit = event => {
    event.preventDefault();
@@ -59,7 +59,7 @@ export default class TaskForm extends Component {
           </label>
           <label className="title-input">
             Completed:
-            <input type="checkbox" name="completed" onChange={this.handleCompletedChange} />
+            <input id="check" type="checkbox" name="completed" onChange={this.handleCompletedChange} />
           </label>
           <button className="kvasov-btn-gradient btn-color-3" type="submit" onClick={()=> this.props.history.push('/tasks')}>Create task</button>
         </form>

@@ -25,7 +25,7 @@ describe('routes using array of routers', () => {
   it('should component for / router ', () => {
     expect(pathMap['/']).toBe(MainPage);
     expect(pathMap['/login']).toBe(LoginForm);
-    expect(pathMap['/signup']).toBe(SignUpForm);
+    expect(pathMap['/signUp']).toBe(SignUpForm);
     expect(pathMap['/task']).toBe(TaskForm);
     expect(pathMap['/tasks']).toBe(TaskList);
     expect(pathMap['/tasks/:taskId/edit']).toBe(TaskEdit);

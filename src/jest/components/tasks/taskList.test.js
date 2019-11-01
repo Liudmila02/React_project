@@ -1,25 +1,70 @@
 import React from 'react';
 import TaskList from '../../../components/tasks/taskList'
-import { BrowserRouter} from 'react-router-dom'
-import nock from 'nock';
+import { Router } from 'react-router-dom'
 
 describe('Test case for testing list tasks',() =>{
-  let component
 
-  it('button new task', async ()=>{
+  it('button new task', () =>{
+    const wrapper = mount(
+      <Router history={history}>
+        <TaskList />
+      </Router>);
+    const component = wrapper.find('TaskList');
+    const button = component.find('button').at(0);
+    button.simulate('click');
+    expect(window.location.pathname).toBe('/task');  
+  });
+  
+  it('button sort by title task', ()=>{
+    component = mount(
+    <Router>
+      <TaskList/>
+    </Router>);
+    component.find('button').at(1).simulate ('submit');
+    expect(window.location.pathname).toBe('/task');  
+  }) 
+  
+  it('button sort by priority task', ()=>{
+    component = mount(
+    <Router>
+      <TaskList/>
+    </Router>);
+    component.find('button').at(1).simulate ('submit');
+    expect(window.location.pathname).toBe('/task');  
+  }) 
+  
+  it('button sort by due date task', ()=>{
+    component = mount(
+    <Router>
+      <TaskList/>
+    </Router>);
+    component.find('button').at(1).simulate ('submit');
+    expect(window.location.pathname).toBe('/task');  
+  }) 
+  it('button sort by reverse task', ()=>{
+    component = mount(
+    <Router>
+      <TaskList/>
+    </Router>);
+    component.find('button').at(1).simulate ('submit');
+    expect(window.location.pathname).toBe('/task');  
+  }) 
+  it('button delete checked', ()=>{
     component = mount(
     <BrowserRouter>
       <TaskList/>
     </BrowserRouter>);
-    const profileScope = nock('http://localhost:4000/')
-    .persist()
-    .post("/api/tasks")
-    .reply(200, { task: { title: 'task', description: 'cooking', priority: '1', due_date: '10/10/2019', completed: 'false' }} );
-    
-    component.find('button').simulate ('submit');
-    await waitFor(2000)
+    component.find('button').at(0).simulate ('submit');
     expect(window.location.pathname).toBe('/task');  
-    nock.cleanAll()
+  }) 
+
+  it('button check / uncheck all ', ()=>{
+    component = mount(
+    <BrowserRouter>
+      <TaskList/>
+    </BrowserRouter>);
+    component.find('button').at(0).simulate ('submit');
+    expect(window.location.pathname).toBe('/task');  
   }) 
 
 
@@ -27,16 +72,3 @@ describe('Test case for testing list tasks',() =>{
 
 
 
-// it("should run handleDone", () => {
-//     const component = wrapper.find("TaskProfile");
-//     const btn = component.find("#btndone");
-//     btn.simulate("click");
-//     expect(component.props().onDoneTask).toHaveBeenCalled();
-//   });
-
-//   it("should run handledelete", () => {
-//     const component = wrapper.find("TaskProfile");
-//     const btn = component.find("#btndelete");
-//     btn.simulate("click");
-//     expect(component.props().onDeleteTask).toHaveBeenCalled();
-//   });

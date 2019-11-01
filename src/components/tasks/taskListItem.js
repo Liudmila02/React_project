@@ -16,7 +16,7 @@ function TaskListItem (props){
       <Link className="btn btn-primary btn-circle" to={`/tasks/${id}/show`} >
       <i className="fa fa-eye"></i></Link>
       <Link className="btn btn-primary btn-circle" to={`/tasks/${id}/edit`}><i class="fa fa-edit"></i></Link>
-      <button className="btn btn-primary btn-circle" onClick={() => props.handleDelete(id)}>
+      <button id="btnDelete" className="btn btn-primary btn-circle" onClick={() => props.handleDelete(id)}>
         <i className="fa fa-trash"></i>
       </button>
       {!completed ? (<button className="btn btn-primary btn-circle"
