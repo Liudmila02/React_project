@@ -6,7 +6,7 @@
 }
 .btn-light {
   position: relative;
-  margin-left: 1400px;
+  margin-left: 2%;
 }
 .nav-menu {
   font-size: 1em;
@@ -17,6 +17,13 @@
   font-family: 'Mansalva', cursive;
   color: white;
   padding: 0,5em;
+}
+
+.btn-list {
+  position: relative;
+  margin-left: 70%;
+  width: 90px;
+  background-color: while;
 }
 
 /* h3 {

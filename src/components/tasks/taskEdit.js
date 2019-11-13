@@ -1,10 +1,9 @@
-import React, { Link } from "react";
+import React from "react";
 import {request} from '../../utils/axios';
-import nav from '../../utils/nav'
-
+import { withRouter } from "react-router";
 import '../../style/taskForm.css'
 
-export default class TaskEdit extends React.Component {
+class TaskEdit extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -37,7 +36,12 @@ export default class TaskEdit extends React.Component {
         }, () => {
         })
       })
-      .catch(err =>  console.log(err));
+      .catch((err) =>{
+        console.log(err)
+        if (err.response.status === 401){
+          this.props.history.push('/login')
+        }
+      });
   }
 
   editTask(newTask){
@@ -47,8 +51,10 @@ export default class TaskEdit extends React.Component {
       data: newTask
     }).then(response => {
       console.log(response.data);
-      nav('/tasks')
-    }).catch(err => console.log(err));
+      this.props.history.push('/tasks')
+    })
+    .catch((err) =>{
+    });
   }
 
   onSubmit(e){
@@ -114,9 +120,11 @@ export default class TaskEdit extends React.Component {
             <input id="check" type="checkbox" name="completed" ref="completed" checked={this.state.completed} 
             onChange={this.handleInputCheckboxChange} />
           </label>
-          <button id="btnSave" className="kvasov-btn-gradient btn-color-3" type="submit" value="Save">Save</button>
+          <button id="btnSave" className="kvasov-btn-gradient btn-color-3" type="submit" value="Save" >Save</button>
         </form>
       </div>  
     )
   }
 }
+
+export default withRouter(TaskEdit)

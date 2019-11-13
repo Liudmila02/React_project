@@ -1,5 +1,4 @@
 import React from 'react'
-import { request } from '../utils/axios'
 import nav from '../utils/nav'
 import { withRouter } from "react-router";
 

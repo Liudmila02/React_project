@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {request} from '../../utils/axios'
-import nav from "../../utils/nav"
+import { withRouter } from "react-router";
 
 import '../../style/taskForm.css'
 
-export default class TaskForm extends Component {
+class TaskForm extends Component {
   state = {
     title: '',
     description: '',
@@ -25,29 +25,30 @@ export default class TaskForm extends Component {
     request.post('/api/tasks',
     { title: this.state.title, description: this.state.description, priority: this.state.priority, due_date: this.state.due_date, completed: this.state.completed },)
     .then(res => {
-      
-      nav('/tasks')
+      // console.log(res)
+      this.props.history.push('/tasks')
     })
     .catch(function (err) {
-      console.log(err.response);
+      // console.log(err.response);
     });
-}
+  }
+
   render() {
     return (
-      <div className="gradient-box">   
+      <div id='inputs' className="gradient-box">   
         <p>New task</p>     
         <form className="form-group" onSubmit={this.handleSubmit}>
           <label className="title-input">
             Title:
-            <input  className="form-control inline-input" required type="text" id="title" name="title"  onChange={this.handleTitleChange} />
+            <input value={this.state.title} className="form-control inline-input" required type="text" id="title" name="title"  onChange={this.handleTitleChange} />
           </label>
           <label className="title-input">
             Description:
-            <input className="form-control inline-input" required type="text" id="description" name="description"  onChange={this.handleDescriptionChange} />
+            <input value={this.state.description} className="form-control inline-input" required type="text" id="description" name="description"  onChange={this.handleDescriptionChange} />
           </label>
           <label className="title-input">
             Priority:
-            <select id="priority" value={this.state.value}  onChange={this.handlePriorityChange}>
+            <select value={this.state.priority} id="priority" value={this.state.value}  onChange={this.handlePriorityChange}>
             <option value="1">Later</option>
             <option value="2">Next</option>
             <option value="3">Now</option>
@@ -55,16 +56,17 @@ export default class TaskForm extends Component {
           </label>
           <label className="title-input">
             Due_date:
-            <input required type="date" name="due_date"  onChange={this.handleDueDateChange} />
+            <input value={this.state.due_date} required type="date" name="due_date" id="due_date" onChange={this.handleDueDateChange} />
           </label>
           <label className="title-input">
             Completed:
-            <input id="check" type="checkbox" name="completed" onChange={this.handleCompletedChange} />
+            <input value={this.state.completed} id="check" type="checkbox" name="completed" onChange={this.handleCompletedChange} />
           </label>
-          <button className="kvasov-btn-gradient btn-color-3" type="submit" onClick={()=> this.props.history.push('/tasks')}>Create task</button>
+          <button className="kvasov-btn-gradient btn-color-3" type="submit" >Create task</button>
         </form>
       </div>
     )
   }
 }
 
+export default withRouter(TaskForm);

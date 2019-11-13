@@ -1,17 +1,23 @@
 import React from 'react';
 import LoginForm from '../../../components/users/LoginForm';
+import { Router } from 'react-router-dom';
+
+import history from '../../../utils/history';
 import nock from 'nock';
 
 describe('Test case for testing login',() =>{
   let component
+  component = mount(
+    <Router history={history}>
+      <LoginForm/>
+    </Router>);
 
-  it('input check', () =>{
-    component = mount(<LoginForm/>);
-    component.find('input[type="email"]').simulate('change', {target: {name: 'email', value: 'good@gmail.com'}});
-    expect(component.state('email')).toEqual('good@gmail.com');
-    component.find('input[type="password"]').simulate('change', {target: {name: 'password', value: 'password123'}});
-    expect(component.state('password')).toEqual('password123');
-    })
+  it('input check', () => {
+    component.find('input[type="email"]').simulate('change', {target: { value: 'good@gmail.com' }});
+    expect(component.find('input[type="email"]').instance().value).toEqual('good@gmail.com');
+    component.find('input[type="password"]').simulate('change', {target: { value: 'password123' }});
+    expect(component.find('input[type="password"]').instance().value).toEqual('password123');
+  })
 
   it('login check with right data', async ()=>{
     const profileScope = nock('http://localhost:4000/')

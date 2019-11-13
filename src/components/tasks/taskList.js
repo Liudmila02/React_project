@@ -30,8 +30,10 @@ class TaskList extends Component {
           listItems: res.data
         })
       })
-      .catch(function (err) {
-        console.log(err.response);
+      .catch((err) => {
+        if (err.response.status === 401){
+          this.props.history.push('/login')
+        }
       });
   }
 
@@ -149,7 +151,7 @@ class TaskList extends Component {
     .catch(function (err) {
       console.log(err.response);
     })
-}
+  }
   checkItAll = (event) => {
     let listItems = this.state.listItems
     listItems.forEach(item => {
@@ -181,9 +183,9 @@ class TaskList extends Component {
           {/* <li>
             <Link class="btn btn-primary" to="/tasks">List task</Link>
           </li> */}
-          <div class="btn-group">
-            <button type="button" class="btn btn-warning">Sort</button>
-            <button type="button" class="btn  btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div className="btn-group">
+            <button type="button" className="btn btn-warning">Sort</button>
+            <button type="button" className="btn  btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span className="sr-only">Toggle Dropdown</span>
             </button>
             <div className="dropdown-menu">
