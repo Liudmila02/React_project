@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { request } from '../../utils/axios';
 import { Link } from 'react-router-dom';
 import TaskListItem from './taskListItem';
-import nav from '../../utils/nav'
 import { withRouter } from "react-router";
 
 import '../../style/listTask.css';

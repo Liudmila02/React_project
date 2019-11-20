@@ -29,9 +29,18 @@ class signUpForm extends Component {
     .catch(function (err) {
     });
   }
+
   render() {
     return (
       <div className="border-box">
+        <a href="http://localhost:4000/auth/linkedin">
+        <i class="fa fa-linkedin-square " ></i>
+          Sign up with LinkedIn</a>
+        <hr/>
+        <a href="http://localhost:4000/auth/github">
+        <i class="fa fa-github" aria-hidden="true"></i>
+          Sign up with GitHub</a>
+        <hr/>
         <p>Sign Up</p>
         <form className="form-group" onSubmit={this.handleSubmit}>
         <label className="title-input">

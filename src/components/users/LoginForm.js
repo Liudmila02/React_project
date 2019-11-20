@@ -30,6 +30,14 @@ class LoginForm extends Component {
     return (
       <div className="border-gradient-box">
         <p>Login</p>
+        <a href="http://localhost:4000/auth/linkedin">
+        <i class="fa fa-linkedin-square " ></i>
+          Login with LinkedIn</a>
+        <hr/>
+        <a href="http://localhost:4000/auth/github">
+        <i class="fa fa-github" aria-hidden="true"></i>
+          Login with GitHub</a>
+        <hr/> 
         <form className="form-group" onSubmit={this.handleSubmit}>
           <label className="title-input">
             Email:
@@ -39,6 +47,7 @@ class LoginForm extends Component {
             Password:
             <input value={this.state.password} className="form-control inline-input" type="password" name="password" onChange={this.handlePasswordChange} />
           </label>
+          
           <button className="btn-btn-gradient btn-color-3" type="submit">Login</button>
         </form>
       </div>
