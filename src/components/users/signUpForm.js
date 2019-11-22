@@ -32,39 +32,39 @@ class signUpForm extends Component {
 
   render() {
     return (
-      <div className="border-box">
-        <a href="http://localhost:4000/auth/linkedin">
-        <i class="fa fa-linkedin-square " ></i>
-          Sign up with LinkedIn</a>
-        <hr/>
-        <a href="http://localhost:4000/auth/github">
-        <i class="fa fa-github" aria-hidden="true"></i>
-          Sign up with GitHub</a>
-        <hr/>
-        <p>Sign Up</p>
+      <div id="signup-box">
+        <div className="left">
+        <span className="title-auth">Sign Up</span>
         <form className="form-group" onSubmit={this.handleSubmit}>
         <label className="title-input">
-          Username:
-          <input value={this.state.username} className="form-control inline-input" required type="text" name="username" id="username" onChange={this.handleUserNameChange} />
+          <input placeholder="Username" value={this.state.username} className="form-control inline-input" required type="text" name="username" id="username" onChange={this.handleUserNameChange} />
         </label>
         <label className="title-input">
-          First name:
-          <input value={this.state.first_name} className="form-control inline-input" required type="text" name="first_name" id="Fname" onChange={this.handleFirsNameChange} />
-        </label>
-        <label className="form-control inline-input" className="title-input">
-          Last name:
-          <input value={this.state.last_name} className="form-control inline-input" required type="text" name="last_name" id="Lname" onChange={this.handleLastNameChange} />
+          <input placeholder="First name" value={this.state.first_name} className="form-control inline-input" required type="text" name="first_name" id="Fname" onChange={this.handleFirsNameChange} />
         </label>
         <label className="title-input">
-          Email:
-          <input value={this.state.email} className="form-control inline-input" type="email" name="email" onChange={this.handleEmailChange} />
+          <input placeholder="Last name" value={this.state.last_name} className="form-control inline-input" required type="text" name="last_name" id="Lname" onChange={this.handleLastNameChange} />
         </label>
         <label className="title-input">
-          Password:
-          <input value={this.state.password} className="form-control inline-input" required type="password" name="password" onChange={this.handlePasswordChange} />
+          <input placeholder="E-mail" value={this.state.email} className="form-control inline-input" type="email" name="email" onChange={this.handleEmailChange} />
         </label>
-        <button className="btn-gradient btn-color-3" type="submit" >Sign up</button>
+        <label className="title-input">
+          <input placeholder="Password" value={this.state.password} className="form-control inline-input" required type="password" name="password" onChange={this.handlePasswordChange} />
+        </label>
+        <button className="button-signin" type="submit" >Sign up</button>
         </form>
+        </div>
+        <div className="right">
+          <span className="title-auth">Sign in with Social Network</span>
+          <span class="loginwith">
+        <a className="btn btn-block btn-social btn-linkedin" href="http://localhost:4000/auth/linkedin">
+        <i className="fa fa-linkedin-square " ></i>
+          Log in with LinkedIn</a></span>
+          <span className="loginwith">
+        <a  className="btn btn-block btn-social btn-github" href="http://localhost:4000/auth/github">
+        <i className="fa fa-github"></i>
+          Log in with GitHub</a></span>
+        </div>
       </div>
     )
   }

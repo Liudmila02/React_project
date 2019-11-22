@@ -28,28 +28,31 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="border-gradient-box">
-        <p>Login</p>
-        <a href="http://localhost:4000/auth/linkedin">
-        <i class="fa fa-linkedin-square " ></i>
-          Login with LinkedIn</a>
-        <hr/>
-        <a href="http://localhost:4000/auth/github">
-        <i class="fa fa-github" aria-hidden="true"></i>
-          Login with GitHub</a>
-        <hr/> 
-        <form className="form-group" onSubmit={this.handleSubmit}>
-          <label className="title-input">
-            Email:
-            <input value={this.state.email} className="form-control inline-input" type="email" name="email" onChange={this.handleEmailChange} />
-          </label>
-          <label className="title-input">
-            Password:
-            <input value={this.state.password} className="form-control inline-input" type="password" name="password" onChange={this.handlePasswordChange} />
-          </label>
-          
-          <button className="btn-btn-gradient btn-color-3" type="submit">Login</button>
-        </form>
+      <div id="login-box">
+        <div className="left">
+          <span className="title-auth">Log in</span>
+          <form className="form-group-in" onSubmit={this.handleSubmit}>
+            <label className="title-input">
+              <input placeholder="Email" value={this.state.email} className="form-control inline-input" type="email" name="email" onChange={this.handleEmailChange} />
+            </label>
+            <label className="title-input">
+              <input placeholder="Password" value={this.state.password} className="form-control inline-input" type="password" name="password" onChange={this.handlePasswordChange} />
+            </label>
+            <button className="button-signin" type="submit">Login</button>
+            </form>
+        <div/>
+        </div>
+        <div className="right-in">
+          <span className="title-auth">Log in with Social Network</span>
+          <span class="loginwith-in">
+            <a className="btn btn-block btn-social btn-linkedin-in" href="http://localhost:4000/auth/linkedin">
+            <i className="fa fa-linkedin-square " ></i>
+              Log in with LinkedIn</a></span>
+          <span className="loginwith-in">
+            <a className="btn btn-block btn-social btn-github-in" href="http://localhost:4000/auth/github">
+            <i className="fa fa-github"></i>
+              Log in with GitHub</a></span>
+        </div> 
       </div>
     )
   }
