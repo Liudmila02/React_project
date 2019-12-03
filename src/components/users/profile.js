@@ -29,11 +29,11 @@ class UserShow extends React.Component {
         <div className="show-task">
         {this.state.Profile && 
           <div> 
-            <div id="username"> Title: {this.state.Profile.username}</div>
-            <div id="Fname"> Description: {this.state.Profile.first_name}</div>
-            <div id="Lname"> Priority: {this.state.Profile.last_name}</div>
-            <div id="email"> Due date: {this.state.Profile.email}</div>
-            <div id="password"> Completed: {this.state.Profile.password}</div>
+            <div id="username"> Username: {this.state.Profile.username}</div>
+            <div id="Fname"> First name: {this.state.Profile.first_name}</div>
+            <div id="Lname"> Last name: {this.state.Profile.last_name}</div>
+            <div id="email"> Email: {this.state.Profile.email}</div>
+            <div id="password"> Password: {this.state.Profile.password}</div>
           </div>
         }
         <button type="button" className="btn btn-info btn-rounded" onClick={()=> this.props.history.push('/')}>Back</button> 

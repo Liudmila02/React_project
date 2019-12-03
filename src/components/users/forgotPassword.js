@@ -15,6 +15,7 @@ class ForgotPassword extends Component {
     event.preventDefault();
       request.post('/forgot', { email: this.state.email })
     .then(res => {
+      console.log(request.userId)
       this.props.history.push(`/forgot/reset/${this.props.match.params.userId}`)
     })
     .catch(function (err) {
@@ -32,7 +33,7 @@ class ForgotPassword extends Component {
             <label className="input-email">
               <input placeholder="Email" value={this.state.email} className="form-control inline-input" type="email" name="email" onChange={this.handleEmailChange} />
             </label>
-            <button className="button-signin" type="submit" >Submit</button>
+            <button className="button-signin" type="submit">Submit</button>
             </form>
         <div/>
         </div>

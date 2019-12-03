@@ -11,7 +11,7 @@ import TaskShow from './components/tasks/taskShow'
 import MainPage from './components/mainPage'
 import Linkedin from './components/users/signUpForm'
 import ForgotPassword from './components/users/forgotPassword'
-import NewPassword from './components/users/newPassword'
+import ResetPassword from './components/users/resetPassword'
 import UserShow from './components/users/profile'
 import UserEdit from './components/users/edit_profile'
 
@@ -34,7 +34,7 @@ class App extends Component {
           <Route path="/tasks/:taskId/show" component={TaskShow} /> 
           <Route path="/auth/linkedin" component={Linkedin} />
           <Route path="/forgot" component={ForgotPassword} />
-          <Route path="/forgot/reset/:userId" component={NewPassword} />
+          <Route path="/forgot/reset/:userId" component={ResetPassword} />
         </div>
       </Router>
     );

@@ -16,7 +16,7 @@ class NewPassword extends Component {
   updatePassword = e => {
     e.preventDefault()
     const { password } = this.state
-    request.post(`/forgot/reset/${this.props.match.params.token}`, { password })
+    request.put(`/forgot/reset/${this.props.match.params.token}`, { password })
     .then(res => {
       this.props.history.push('/')
     })
