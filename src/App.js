@@ -10,6 +10,10 @@ import TaskEdit from './components/tasks/taskEdit'
 import TaskShow from './components/tasks/taskShow'
 import MainPage from './components/mainPage'
 import Linkedin from './components/users/signUpForm'
+import ForgotPassword from './components/users/forgotPassword'
+import NewPassword from './components/users/newPassword'
+import UserShow from './components/users/profile'
+import UserEdit from './components/users/edit_profile'
 
 import history from './utils/history'
 
@@ -22,11 +26,15 @@ class App extends Component {
           <Route exact path="/" component={MainPage} />
           <Route path="/login" component={LoginForm} />
           <Route path="/signUp" component={signUpForm} />
+          <Route path="/users/:userId/show" component={UserShow} /> 
+          <Route path="/users/:userId/edit" component={UserEdit} />
           <Route path="/task" component={TaskForm} />
           <Route exact path="/tasks" component={TaskList} />
           <Route path="/tasks/:taskId/edit" component={TaskEdit} />
           <Route path="/tasks/:taskId/show" component={TaskShow} /> 
           <Route path="/auth/linkedin" component={Linkedin} />
+          <Route path="/forgot" component={ForgotPassword} />
+          <Route path="/forgot/reset/:userId" component={NewPassword} />
         </div>
       </Router>
     );
