@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {request} from '../../utils/axios';
 import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom';
 
 import '../../style/loginForm.css'
 
@@ -39,7 +40,7 @@ class LoginForm extends Component {
               <input placeholder="Password" value={this.state.password} className="form-control inline-input" type="password" name="password" onChange={this.handlePasswordChange} />
             </label>
             <button className="button-signin" type="submit">Login</button>
-            <a className="forgot-password" href="/forgot/">Forgot your password?</a>
+            <Link className="forgot-password" to="/forgot/">Forgot your password?</Link>
             </form>
         <div/>
         </div>

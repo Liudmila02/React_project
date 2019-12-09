@@ -85,29 +85,34 @@ class UserEdit extends React.Component {
         <form className="form-group" onSubmit={this.onSubmit.bind(this)}>
           
           <label className="title-input">
+            <input  value={this.state.username} className="form-control inline-input" required type="file" name="image" id="image" ref="image"
+            onChange={this.handleInputChange}  />
+          </label>
+
+          <label className="title-input">
             <input placeholder="Username" value={this.state.username} className="form-control inline-input" required type="text" name="username" id="username" ref="username"
             onChange={this.handleInputChange}  />
-            </label>
+          </label>
 
-            <label className="title-input">
+          <label className="title-input">
             <input placeholder="First name" value={this.state.first_name} className="form-control inline-input" type="text" name="description" id="Fname" ref="first_name"  
             onChange={this.handleInputChange}  />
-            </label>
+          </label>
 
-            <label className="title-input">
+          <label className="title-input">
             <input placeholder="Last name" value={this.state.first_name} className="form-control inline-input" required type="text" name="first_name" id="Lname" ref="last_name"
             onChange={this.handleInputChange}  />
-            </label>
+          </label>
 
-            <label className="title-input">
+          <label className="title-input">
             <input placeholder="E-mail" value={this.state.email} className="form-control inline-input" type="email" name="email" ref="email"
             onChange={this.handleInputChange}  />
-            </label>
+          </label>
 
-            <label className="title-input">
+          <label className="title-input">
             <input placeholder="Password" value={this.state.password} className="form-control inline-input" required type="password" name="password" ref="password"
             onChange={this.handleInputChange}  />
-            </label>
+          </label>
           <button id="btnSave" className="button-signin" type="submit" value="Save" >Save</button>
         </form>
       </div>

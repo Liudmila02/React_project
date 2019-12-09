@@ -11,12 +11,18 @@ class signUpForm extends Component {
     last_name: '',
     email: '',
     password: '',
+    selectedFile: null
   }
   handleUserNameChange = event => {this.setState({ username: event.target.value })}
   handleFirsNameChange = event => {this.setState({ first_name: event.target.value })}
   handleLastNameChange = event => {this.setState({ last_name: event.target.value })}
   handleEmailChange = event => {this.setState({ email: event.target.value })}
   handlePasswordChange = event => {this.setState({ password: event.target.value })}
+  fileSelectedHandler = event => { 
+    this.setState({
+      selectedFile: event.target.files[0]
+      })
+    }
 
   handleSubmit = event => {
     event.preventDefault();
@@ -28,6 +34,12 @@ class signUpForm extends Component {
     })
     .catch(function (err) {
     });
+  }
+
+  fileUploadHandler = () => {
+    axios.post('http://localhost:4000/api/single',
+    { }
+    )
   }
 
   render() {
@@ -50,6 +62,9 @@ class signUpForm extends Component {
         </label>
         <label className="title-input">
           <input placeholder="Password" value={this.state.password} className="form-control inline-input" required type="password" name="password" onChange={this.handlePasswordChange} />
+        </label>
+        <label className="title-input">
+          <input className="form-control inline-input" required type="file" name="image" id="image" onChange={this.fileSelectedHandler} />
         </label>
         <button className="button-signin" type="submit" >Sign up</button>
         </form>

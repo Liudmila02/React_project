@@ -34,7 +34,7 @@ class App extends Component {
           <Route path="/tasks/:taskId/show" component={TaskShow} /> 
           <Route path="/auth/linkedin" component={Linkedin} />
           <Route path="/forgot" component={ForgotPassword} />
-          <Route path="/forgot/reset/:userId" component={ResetPassword} />
+          <Route path="/reset/:userId" component={ResetPassword} />
         </div>
       </Router>
     );

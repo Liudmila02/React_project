@@ -5,8 +5,11 @@ import { withRouter } from 'react-router'
 import '../../style/forgotPassword.css'
 
 class ForgotPassword extends Component {
-  state = {
-    email: '',
+  constructor(props){
+    super(props);
+    this.state = {
+      email:'',
+    }
   }
   
   handleEmailChange = event => { this.setState({ email: event.target.value })}
@@ -15,8 +18,8 @@ class ForgotPassword extends Component {
     event.preventDefault();
       request.post('/forgot', { email: this.state.email })
     .then(res => {
-      console.log(request.userId)
-      this.props.history.push(`/forgot/reset/${this.props.match.params.userId}`)
+      console.log(res.data.id)
+      this.props.history.push(`/reset/${res.data.id}`)
     })
     .catch(function (err) {
       console.log(err.response);
@@ -27,7 +30,7 @@ class ForgotPassword extends Component {
     return (
       <div id="login-box">
         <div className="left">
-          <span className="form-reset">Reset your password</span>
+          <span className="form-reset" >Reset your password</span>
           <h5>It happens to the best of us. Enter your email and we'll send you reset instructions.</h5>
           <form className="form-group-in" onSubmit={this.handleSubmit}>
             <label className="input-email">

@@ -7,7 +7,6 @@ class ResetPassword extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      id: '',
       password:''
     }
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -16,7 +15,7 @@ class ResetPassword extends React.Component {
   resetPassword(updatedPassword){
     request({
       method:'put',
-      url:`/forgot/reset/${this.props.match.params.userId}`,
+      url:`/reset/${this.props.match.params.userId}`,
       data: updatedPassword
     }).then(response => {
       console.log(response.data);
@@ -48,7 +47,7 @@ class ResetPassword extends React.Component {
     return (
       <div id="signup-box">
       <div className="left">
-      <span className="title-auth">Edit Form</span>
+      <span className="title-auth">New Password</span>
         <form className="form-group" onSubmit={this.onSubmit.bind(this)}>
           
             <label className="title-input">
